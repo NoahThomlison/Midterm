@@ -18,4 +18,4 @@ INSERT INTO tasks (title, description, category_id, user_id, set_reminder, remin
 INSERT INTO tasks (title, description, category_id, user_id, set_reminder, reminder_date, completion_status) VALUES
 ('Bubble Tea', 'Dont forget to remind Noah to join to', 5, 2, FALSE, null, FALSE);
 INSERT INTO tasks (title, description, category_id, user_id, set_reminder, reminder_date, completion_status) VALUES
-('Diablo 4 release', 'Dont forget to pre-order, 5, 1, FALSE, null, FALSE);
+('Diablo 4 release', 'Dont forget to pre-order', 5, 1, FALSE, null, FALSE);
