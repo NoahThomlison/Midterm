@@ -7,7 +7,7 @@ CREATE TABLE tasks (
   description TEXT,
   category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  set_reminder BOOLEAN NOT NULL DEFAULT 0,
+  set_reminder BOOLEAN NOT NULL DEFAULT FALSE,
   reminder_date DATE,
-  completion_status BOOLEAN NOT NULL DEFAULT 0
+  completion_status BOOLEAN NOT NULL DEFAULT FALSE
 );
