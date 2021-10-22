@@ -1,7 +1,7 @@
--- Drop and recreate Users table (Example)
+-- Drop and recreate catagories table (Example)
 
-DROP TABLE IF EXISTS users CASCADE;
-CREATE TABLE users (
+DROP TABLE IF EXISTS categories CASCADE;
+CREATE TABLE categories (
   id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL
+  type VARCHAR(255) NOT NULL
 );
