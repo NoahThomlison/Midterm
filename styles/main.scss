@@ -1,9 +1,9 @@
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-
   background: rgb(163, 208, 219);
   background: linear-gradient(
     227deg,
@@ -14,4 +14,31 @@ body {
     rgba(163, 208, 219, 1) 74%,
     rgba(163, 208, 219, 1) 100%
   );
+}
+
+.taskLists {
+  display: flex;
+  justify-content: space-evenly;
+  height: 400px;
+  width: 100%;
+}
+
+.foodList{
+  background-color: lightcoral;
+  width: 25%;
+}
+
+.moviesList{
+  background-color: lightgreen;
+  width: 25%;
+}
+
+.booksList{
+  background-color: plum;
+  width: 25%;
+}
+
+.productsList{
+  background-color: blueviolet;
+  width: 25%;
 }
