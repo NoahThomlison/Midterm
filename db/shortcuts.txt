@@ -1,0 +1,8 @@
+\i db/schema/01_users.sql;
+\i db/schema/02_categories.sql;
+\i db/schema/03_tasks.sql;
+\i db/schema/04_keywords.sql;
+\i db/seeds/01_users.sql;
+\i db/seeds/02_categories.sql;
+\i db/seeds/03_tasks.sql;
+\i db/seeds/04_keywords.sql
