@@ -79,9 +79,9 @@ module.exports = (db) => {
     // }
 
     // If the entered email has already existed
-    const queryString = `SELECT * FROM users WHERE users.email = $1;`;
-    const values = [email];
-    db.query(queryString, values)
+    const queryString1 = `SELECT * FROM users WHERE users.email = $1;`;
+    const values1 = [email];
+    db.query(queryString1, values1)
       .then(data => {
         const user = data.rows[0];
 
@@ -97,9 +97,9 @@ module.exports = (db) => {
       });
 
     // If the entered name has already existed
-    const queryString = `SELECT * FROM users WHERE users.name = $1;`;
-    const values = [name];
-    db.query(queryString, values)
+    const queryString2 = `SELECT * FROM users WHERE users.name = $1;`;
+    const values2 = [name];
+    db.query(queryString2, values2)
       .then(data => {
         const user = data.rows[0];
 
@@ -116,11 +116,11 @@ module.exports = (db) => {
 
     // Use bcrypt to generate hashed password
     const hashedPassword = bcrypt.hashSync(password, 10);
-    const queryString = `INSERT INTO users (name, email, password)
+    const queryString3 = `INSERT INTO users (name, email, password)
     VALUES ($1, $2, $3)
     RETURNING *;`;
-    const values = [name, email, hashedPassword];
-    db.query(queryString, values)
+    const values3 = [name, email, hashedPassword];
+    db.query(queryString3, values3)
       .then(data => {
         const user = data.rows[0];
         req.session.user_id = user.id;
