@@ -21,7 +21,7 @@ app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
-
+app.use(express.json())
 app.use(
   "/styles",
   sassMiddleware({
@@ -51,6 +51,17 @@ app.use("/api/tasks", tasksRoutes(db));
 app.get("/", (req, res) => {
   res.render("index");
 });
+
+app.get("/tasks", (req, res) => {
+  console.log('hello')
+  res.render("index");
+
+});
+
+// app.post("/tasks/new", (req, res) => {
+//   console.log(req.body)
+//   console.log(tasksRoutes(req.body))
+// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
