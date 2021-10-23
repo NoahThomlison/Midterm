@@ -7,13 +7,32 @@
 
 const express = require('express');
 const router  = express.Router();
+const cookieParser = require('cookie-parser');
+const cookieSession = require('cookie-session');
+const cooKey = 'doremi1234567890fasolatido';
+
+
+app.use(cookieParser());
+
+// initite cookie session
+app.use(cookieSession({
+  name: 'session',
+  keys: [cooKey],
+
+  maxAge: 24 * 60 * 60 * 1000  // 24 hours
+}));
+
+
+
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+  router.get('/login', (req, res) => {
+    db.query(`SELECT * FROM users WHERE users.id = 1;`)
       .then(data => {
         const users = data.rows;
+        req.session = users.id;
         res.json({ users });
+        res.redirect('/');
       })
       .catch(err => {
         res
