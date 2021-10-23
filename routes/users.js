@@ -8,10 +8,15 @@
 const express = require('express');
 const router  = express.Router();
 const bcrypt = require('bcrypt');
-const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 const app = express();
 const cooKey = 'doremi1234567890fasolatido';
+
+app.use(cookieSession({
+  name: 'session',
+  keys: [cooKey],
+  maxAge: 24 * 60 * 60 * 1000
+}));
 
 module.exports = (db) => {
 
