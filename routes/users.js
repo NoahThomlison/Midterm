@@ -9,6 +9,7 @@ const express = require('express');
 const router  = express.Router();
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
+const app = express();
 const cooKey = 'doremi1234567890fasolatido';
 
 
