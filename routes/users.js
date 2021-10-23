@@ -129,6 +129,5 @@ module.exports = (db) => {
 
     res.redirect('/tasks');
   });
-
   return router;
 };
