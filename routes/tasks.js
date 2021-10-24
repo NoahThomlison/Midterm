@@ -28,18 +28,23 @@ module.exports = (db) => {
 
   // /api/tasks/
 router.post('/', (req, res) => {
-  console.log('/api/tasks/')
-  console.log(req.body);
-  // res.json({status: 'hello'})
-  res.send('hi max')
 })
 
 // /api/tasks/new
 router.post('/new', (req, res) => {
-  console.log('ding')
-  console.log(req.body)
-  // console.log(res)
-  res.json({status: 'hello'})
+  let queryString =
+  `INSERT INTO tasks (title, category_id) VALUES ($1, $2)`;
+  let values = [req.body.task, req.body.category]
+  db.query(queryString, values)
+    .then(() => {
+      res.status(200)
+    })
+    .catch(err => {
+      res
+        .status(500)
+        console.log(err.message)
+        .json({ error: err.message });
+    });
 })
 
   // /api/tasks/new
@@ -48,8 +53,8 @@ router.get("/new", (req, res) => {
   console.log(query);
   db.query(query)
     .then(data => {
-      const widgets = data.rows;
-      res.json({ widgets });
+      const tasks = data.rows;
+      res.json({ tasks });
     })
     .catch(err => {
       res
