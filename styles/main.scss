@@ -42,3 +42,19 @@ body {
   background-color: blueviolet;
   width: 25%;
 }
+
+.listButton{
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.toDoListItem{
+display: flex;
+align-content: space-around;
+justify-content: space-between;
+}
+
+.toDoRightSide{
+  display: flex;
+}
