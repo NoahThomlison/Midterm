@@ -1,7 +1,4 @@
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
   min-height: 100vh;
   background: rgb(163, 208, 219);
@@ -41,4 +38,13 @@ body {
 .productsList{
   background-color: blueviolet;
   width: 25%;
+}
+
+.navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 5px 10px;
 }
