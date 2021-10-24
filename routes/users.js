@@ -22,7 +22,7 @@ module.exports = (db) => {
 
   // GET api/users/login - render the login page
   router.get('/login', (req, res) => {
-    res.render('index');
+    res.render('login');
   });
 
   // POST api/users/login - set the cookie - redirect to the main page /tasks
@@ -44,7 +44,7 @@ module.exports = (db) => {
 
         // If the email does not exist
         if (!user) {
-          const errMessage = 'Email is not registered!';
+          const errMessage = 'We cannot find and account with that email address!';
           return res.status(403).send(errMessage);
         }
 
@@ -73,15 +73,26 @@ module.exports = (db) => {
     res.redirect('/tasks');
   });
 
+  // GET api/users/register - render the register page
+  router.get('/register', (req, res) => {
+    res.render('register');
+  });
+
   // POST api/users/register - INSERT the db - redirect the main page /tasks
   router.post('/register', (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, email, password, repeatedPassword } = req.body;
 
-    // If one of the name, email and password is empty
-    // if (!name || !email || !password) {
-    //   const errMessage = 'Cannot enter an empty name, email or password!';
-    //   return res.status(400).send(errMessage);
-    // }
+    // If one of the name, email, password and repeatedPassword is empty
+    if (!name || !email || !password || !repeatedPassword) {
+      const errMessage = 'Cannot enter an empty name, email or password!';
+      return res.status(400).send(errMessage);
+    }
+
+    // If passwords don't match
+    if (password !== repeatedPassword) {
+      const errMessage = 'Passwords do not match';
+      return res.status(400).send(errMessage);
+    }
 
     // If the entered email has already existed
     const queryString1 = `SELECT * FROM users WHERE users.email = $1;`;
