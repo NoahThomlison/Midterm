@@ -1,0 +1,46 @@
+.login {
+  padding: 20px;
+  border: 1px solid gray;
+  width: 25%;
+
+  h2 {
+    margin-bottom: 20px;
+  };
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      margin: 5px 0;
+    };
+
+    label {
+      margin: 0;
+      float: left;
+      width: 130px;
+      height: 35px;
+      font-weight: bold;
+      line-height: 35px;
+      font-size: 16px;
+    };
+
+    .continue-button {
+      margin-top: 15px;
+    };
+
+    input {
+      padding: 2.5px 12px;
+      border: 1px solid gray;
+      border-radius: 4px;
+      height: 35px;
+    };
+
+    p {
+      margin: 0;
+    };
+
+  }
+}
