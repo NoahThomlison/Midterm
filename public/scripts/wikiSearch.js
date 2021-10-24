@@ -7,15 +7,17 @@
     MIT License
 */
 
-import fetch from 'cross-fetch';
+// const fetch = require('fetch');
 
-var url = "https://en.wikipedia.org/w/api.php";
+function wikiSearch (){
 
-var params = {
+let url = "https://en.wikipedia.org/w/api.php";
+
+let params = {
   action: "query",
   prop: "extracts",
   list: "search",
-  srsearch: "Burger",
+  srsearch: 'burger',
   srlimit: 50,
   format: "json"
   };
@@ -25,7 +27,10 @@ var params = {
 
   let siteData = fetch(url)
       .then(function(response){return response.json();})
-      // .then(function(response) {
-      //   console.log(response.query.search)
-      // })
+      .then(function(response) {
+        console.log(response.query.search)
+      })
       .catch(function(error){console.log(error);});
+
+return siteData
+}
