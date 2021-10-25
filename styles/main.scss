@@ -1,10 +1,7 @@
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: rgb(163, 208, 219);
+  background: rgb(227, 231, 232);
   background: linear-gradient(
     227deg,
     rgba(163, 208, 219, 1) 0%,
@@ -18,27 +15,47 @@ body {
 
 .taskLists {
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.taskLists-groupA {
+  padding: 5px 0;
+  display: flex;
   justify-content: space-evenly;
   height: 400px;
   width: 100%;
 }
 
+.taskLists-groupB {
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-evenly;
+  height: 400px;
+  width: 100%;
+}
+
+
 .foodList{
+  border: solid darkgray;
   background-color: lightcoral;
   width: 25%;
 }
 
 .moviesList{
+  border: solid darkgray;
   background-color: lightgreen;
   width: 25%;
 }
 
 .booksList{
+  border: solid darkgray;
   background-color: plum;
   width: 25%;
 }
 
 .productsList{
+  border: solid darkgray;
   background-color: blueviolet;
   width: 25%;
 }
@@ -57,4 +74,9 @@ justify-content: space-between;
 
 .toDoRightSide{
   display: flex;
+.uncategorizedList{
+  align-self: center;
+  border: solid darkgray;
+  background-color: lightgray;
+  width: 25%;
 }
