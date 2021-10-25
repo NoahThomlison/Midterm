@@ -26,4 +26,8 @@ console.log('running2')
 
     // $.post('api/tasks/', {data: newTask})
   })
-})
+
+  $('#collapseExample').on('hidden.bs.collapse', function () {
+    $('#collapseExample').collapse('show')
+  });
+});

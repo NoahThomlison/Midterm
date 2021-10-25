@@ -13,54 +13,69 @@
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
   <header>
     <nav class="navbar navbar-light justify-content-end" style="background-color: #e3f2fd;">
       <!-- Navbar content -->
-        <input class="btn btn-primary" name="login" type="submit" value="Login">
+        <h5 class="welcome-name mx-5">Hello there, name</h5>
+        <input class="btn btn-primary mx-2" name="login" type="submit" value="Logout">
     </nav>
   </header>
-  <button id='loginButton'>Login</button>
   <!-- New Task Area -->
-  <section>
+  <section class="new-task-form">
+    <p>
+      <button id="button1" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Button with data-target
+      </button>
+    </p>
+    <div class="collapse align-middle" id="collapseExample">
+      <div class="card card-body align-middle">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+      </div>
+    </div>
     <!-- New Task Box -->
-    <div class="new-task">
+    <!-- <div class="new-task">
       <h2>Add New Task</h2>
       <form id='newTaskForm' method="" action="">
         <textarea name="text" id="task-text"></textarea>
         <button id='newTaskFormSubmit' type="submit">Submit</button>
       </form>
-    </div>
+    </div> -->
     <!-- End Task Box -->
   </section>
   <!-- End Task Area -->
 
   <section class='taskLists'>
-    <section class='foodList'>
-      <h4>Food</h4>
-      <ul>
-      </ul>
-    </section>
+    <div class='taskLists-groupA'>
+      <section class='foodList'>
+        <h4>Food</h4>
+        <ul>
+        </ul>
+      </section>
 
-    <section class='moviesList'>
-      <h4>Movies</h4>
-      <ul>
-      </ul>
-    </section>
+      <section class='moviesList'>
+        <h4>Movies</h4>
+        <ul>
+        </ul>
+      </section>
+    </div>
 
-    <section class='booksList'>
-      <h4>Books</h4>
-      <ul>
-      </ul>
-    </section>
+    <div class='taskLists-groupB'>
+      <section class='booksList'>
+        <h4>Books</h4>
+        <ul>
+        </ul>
+      </section>
 
-    <section class='productsList'>
-      <h4>Products</h4>
-      <ul>
-      </ul>
-    </section>
+      <section class='productsList'>
+        <h4>Products</h4>
+        <ul>
+        </ul>
+      </section>
+    </div>
   </section>
 
 </body>
