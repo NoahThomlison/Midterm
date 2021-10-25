@@ -36,8 +36,4 @@ $(document).ready(function(){
       )
     }
   })
-
-  $('#collapseExample').on('hidden.bs.collapse', function () {
-    $('#collapseExample').collapse('show')
-  });
 });
