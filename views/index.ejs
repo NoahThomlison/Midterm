@@ -8,9 +8,9 @@
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -21,35 +21,36 @@
     <div class="new-task">
       <h2>Add New Task</h2>
       <form id='newTaskForm' method="" action="">
-        <textarea name="text" id="task-text"></textarea>
+        <textarea name="text" id="task-text" required></textarea>
         <button id='newTaskFormSubmit' type="submit">Submit</button>
       </form>
     </div>
     <!-- End Task Box -->
   </section>
   <!-- End Task Area -->
+  <i class="fa-solid fa-list-radio"></i>
 
   <section class='taskLists'>
-    <section class='foodList'>
-      <h4>Food</h4>
+    <section class='foodList' id='1'>
+      <h4 class='listTitle'>Restaurants and Cafes</h4>
       <ul>
       </ul>
     </section>
 
-    <section class='moviesList'>
-      <h4>Movies</h4>
+    <section class='moviesList' id='2'>
+      <h4>Movies and TV</h4>
       <ul>
       </ul>
     </section>
 
-    <section class='booksList'>
-      <h4>Books</h4>
+    <section class='booksList' id='3'>
+      <h4>Books and Magazines</h4>
       <ul>
       </ul>
     </section>
 
-    <section class='productsList'>
-      <h4>Products</h4>
+    <section class='productsList' id='4'>
+      <h4>Items and Produce</h4>
       <ul>
       </ul>
     </section>

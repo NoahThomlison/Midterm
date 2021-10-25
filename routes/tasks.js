@@ -10,44 +10,6 @@ const router  = express.Router();
 
 module.exports = (db) => {
 
-
-
-
-  // /api/tasks/
-  // router.get('/', (req, res) => {
-  //   let query = `SELECT * FROM tasks`;
-  //   console.log('/api/tasks/')
-  //   console.log(query);
-  //   db.query(query)
-  //     .then(data => {
-  //       const widgets = data.rows;
-  //       res.json({ widgets });
-  //     })
-  //     .catch(err => {
-  //       res
-  //         .status(500)
-  //         .json({ error: err.message });
-  //     });
-  // });
-
-  // /api/tasks/
-// router.post('/', (req, res) => {
-//   console.log('/api/tasks/')
-//   console.log(req.body);
-//   // res.json({status: 'hello'})
-//   res.send('hi max')
-// })
-
-// /api/tasks/new
-// router.post('/new', (req, res) => {
-//   console.log('ding')
-//   console.log(req.body)
-//   // console.log(res)
-//   res.json({status: 'hello'})
-// })
-
-
-
   // create a new task
   router.post('/new', (req, res) => {
     const newTaskQuery = `INSERT INTO tasks (title, description, user_id) VALUES ($1. $2, $3)`;
@@ -94,6 +56,7 @@ module.exports = (db) => {
     });
  });
 
+  // IS THIS CORRECT? IT SEEMS FUNNY?
   // delete a specific task
   router.post('/:tasksId/delete', (req, res) => {
   let deleteTaskQuery = `DELETE FROM tasks WHERE id = $1`;
@@ -103,6 +66,37 @@ module.exports = (db) => {
     .then(()=> {
       res.status(200);
       console.log('Sucessfully deleted task');
+  // /api/tasks/
+  router.post('/', (req, res) => {
+  })
+})
+})
+
+// /api/tasks/new
+router.post('/new', (req, res) => {
+  let queryString =
+  `INSERT INTO tasks (title, category_id) VALUES ($1, $2)`;
+  let values = [req.body.task, req.body.category]
+  db.query(queryString, values)
+    .then(() => {
+      res.status(200)
+    })
+    .catch(err => {
+      res
+        .status(500)
+        console.log(err.message)
+        .json({ error: err.message });
+    });
+})
+
+  // /api/tasks/new
+router.get("/new", (req, res) => {
+  let query = `SELECT * FROM tasks`;
+  console.log(query);
+  db.query(query)
+    .then(data => {
+      const tasks = data.rows;
+      res.json({ tasks });
     })
     .catch((err) => {
       console.log('Error', err.message);

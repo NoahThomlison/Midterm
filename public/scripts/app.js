@@ -1,29 +1,39 @@
 // Client facing scripts here
+// import fetch from "node-fetch";
+
 $(document).ready(function(){
-console.log('running2')
 
   $('#newTaskForm').submit(function(event){
     event.preventDefault();
-    form = $(this)
     const newTask = $('#task-text').val()
-    console.log(form)
+    let splitString = newTask.split(' ')
+    // console.log(splitString)
 
-// // sorting functions
-// if single word call funtionX
-// if multiword call functionY
-    console.log(typeof(newTask))
-    console.log(newTask)
-    // $.post('api/tasks/new', {data: newTask})
-    //   .then(data => {
-    //     $('.food').append(`<li>${data.status}</li>`)
-    //     console.log(data);
-    //   })
-    $.post('api/tasks/', {data: newTask})
-      .then(data => {
-        console.log(`data: ${data}`);
-        console.log('ding');
-      })
-
-    // $.post('api/tasks/', {data: newTask})
+    if(splitString.length = 1){
+      console.log('ding')
+      $.post('api/keywords', {keyword: newTask})
+      .then((category) => {
+        console.log(category)
+        $.post('api/tasks/new', {task: newTask, category: category})
+        $(`#${category}`).append(
+          `<li class='toDoListItem'>
+            <div class='toDoRightSide'>
+              <button class='listButton'>
+              <i class="fas fa-check-circle"></i>
+              </button>
+              <button class='listButton'>
+                <i class="fas fa-minus-circle"></i>
+              </button>
+              <div class="task">${newTask}
+              </div>
+            </div>
+            <button class='listButton'>
+              <i class="fas fa-filter"></i>
+            </button>
+          </li>`)
+        $('#task-text').val('')
+        }
+      )
+    }
   })
 })
