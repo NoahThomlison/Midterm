@@ -9,20 +9,21 @@
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/login.css" type="text/css" />
-
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
 </head>
 
 <body>
+  <%- include('partials/_header') %>
   <div class="login">
     <h2>Sign-In</h2>
     <form id='loginForm' method="POST" action="/api/users/login">
       <div class="email-area">
         <label for="email">Email address</label>
-        <input type="email" name="email" placeholder="Enter email">
+        <input id="email" type="email" name="email" placeholder="Enter email">
       </div>
       <div class="password-area">
         <label for="password">Password</label>
-        <input type="password" name="password" placeholder="Password">
+        <input id="password" type="password" name="password" placeholder="Password">
       </div>
       <div class="continue-button">
         <button class="btn btn-warning" type="submit">Continue</button>

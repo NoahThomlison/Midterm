@@ -1,0 +1,25 @@
+nav {
+  width: 100px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  div {
+    width: 100px;
+    height: 100%;
+
+    a {
+      text-align: center;
+    };
+
+    .dropend {
+      height: 59px;
+
+      #dropdownUser3 {
+        border-top: 1px solid gray;
+        border-bottom: 1px solid gray;
+      };
+    };
+  };
+}

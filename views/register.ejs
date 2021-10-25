@@ -9,28 +9,29 @@
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/register.css" type="text/css" />
-
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
 </head>
 
 <body>
+  <%- include('partials/_header') %>
   <div class="register">
     <h2>Create account</h2>
     <form id='registerForm' method="POST" action="/api/users/register">
       <div class="name-area">
         <label for="name">Your name</label>
-        <input type="name" name="name" placeholder="Enter name">
+        <input id="name" type="name" name="name" placeholder="Enter name">
       </div>
       <div class="email-area">
         <label for="email">Email address</label>
-        <input type="email" name="email" placeholder="Enter email">
+        <input id="email" type="email" name="email" placeholder="Enter email">
       </div>
       <div class="password-area">
         <label for="password">Password</label>
-        <input type="password" name="password" placeholder="Password">
+        <input id="password" type="password" name="password" placeholder="Password">
       </div>
       <div class="repeated-password-area">
-        <label for="password">Password again</label>
-        <input type="password" name="repeatedPassword" placeholder="Password">
+        <label for="repeated-password">Password again</label>
+        <input id="repeated-password" type="password" name="repeatedPassword" placeholder="Password">
       </div>
       <div class="continue-button">
         <button class="btn btn-warning" type="submit">Continue</button>
