@@ -7,11 +7,12 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
-
+const cookieSession = require('cookie-session');
 // PG database client/connection setup
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
+
 db.connect();
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -30,7 +31,12 @@ app.use(
     isSass: false, // false => scss, true => sass
   })
 );
-
+const cooKey = 'doremi1234567890fasolatido';
+app.use(cookieSession({
+  name: 'session',
+  keys: [cooKey],
+  maxAge: 24 * 60 * 60 * 1000
+}));
 app.use(express.static("public"));
 
 // Separated Routes for each Resource

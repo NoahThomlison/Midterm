@@ -5,18 +5,9 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
-const express = require('express');
+const express = require("express");
 const router  = express.Router();
 const bcrypt = require('bcrypt');
-const cookieSession = require('cookie-session');
-const app = express();
-const cooKey = 'doremi1234567890fasolatido';
-
-app.use(cookieSession({
-  name: 'session',
-  keys: [cooKey],
-  maxAge: 24 * 60 * 60 * 1000
-}));
 
 module.exports = (db) => {
 
@@ -27,17 +18,17 @@ module.exports = (db) => {
 
   // POST api/users/login - set the cookie - redirect to the main page /tasks
   router.post('/login', (req, res) => {
-    // const { email, password } = req.body;
+    const { email, password } = req.body;
 
     // If either of email and password is empty
-    // if (!email || !password) {
-    //   const errMessage = 'Cannot enter an empty email or password';
-    //   return res.status(400).send(errMessage);
-    // }
+    if (!email || !password) {
+      const errMessage = 'Cannot enter an empty email or password';
+      return res.status(400).send(errMessage);
+    }
 
     const queryString = `SELECT * FROM users WHERE users.email = $1;`;
-    // const values = [email];
-    const values = ['yellowbrickroad@yahoo.can'];
+    const values = [email];
+    // const values = ['yellowbrickroad@yahoo.can'];
     db.query(queryString, values)
       .then(data => {
         const user = data.rows[0];
@@ -53,17 +44,15 @@ module.exports = (db) => {
           const errMessage = 'Incorrect password!';
           return res.status(403).send(errMessage);
         }
-
         req.session.user_id = user.id;
+        // Redirect to main page
+        res.redirect('/tasks')
       })
       .catch(err => {
         res
           .status(500)
           .json({ error: err.message });
       });
-
-      // Redirect to main page
-      res.redirect('/tasks');
   });
 
   // POST api/users/logout - clear the cookie - redirect to main page /tasks
@@ -75,6 +64,7 @@ module.exports = (db) => {
 
   // GET api/users/register - render the register page
   router.get('/register', (req, res) => {
+    console.log('In register:', req.session.user_id);
     res.render('register');
   });
 
@@ -132,6 +122,7 @@ module.exports = (db) => {
 
     // Use bcrypt to generate hashed password
     const hashedPassword = bcrypt.hashSync(password, 10);
+    console.log(hashedPassword);
     const queryString3 = `INSERT INTO users (name, email, password)
     VALUES ($1, $2, $3)
     RETURNING *;`;
