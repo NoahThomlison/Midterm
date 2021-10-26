@@ -10,10 +10,11 @@ const morgan = require("morgan");
 
 // Cookie session
 const cookieSession = require('cookie-session');
+const cooKey = 'doremi1234567890fasolatido';
 
 app.use(cookieSession({
   name: 'session',
-  keys: ['doremi1234567890fasolatido'],
+  keys: [cooKey],
   maxAge: 24 * 60 * 60 * 1000
 }));
 
@@ -61,10 +62,10 @@ app.use("/api/keywords", keywordsRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("login");
 });
 
-app.get("/tasks", (req, res) => {
+app.get("/api/tasks", (req, res) => {
   console.log('hello')
   res.render("index");
 
