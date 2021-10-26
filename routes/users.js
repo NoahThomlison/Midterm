@@ -8,15 +8,7 @@
 const express = require('express');
 const router  = express.Router();
 const bcrypt = require('bcrypt');
-const cookieSession = require('cookie-session');
-const app = express();
-const cooKey = 'doremi1234567890fasolatido';
-
-app.use(cookieSession({
-  name: 'session',
-  keys: [cooKey],
-  maxAge: 24 * 60 * 60 * 1000
-}));
+// const cooKey = 'doremi1234567890fasolatido';
 
 module.exports = (db) => {
 
@@ -27,50 +19,43 @@ module.exports = (db) => {
 
   // POST api/users/login - set the cookie - redirect to the main page /tasks
   router.post('/login', (req, res) => {
-    // const { email, password } = req.body;
-
-    // If either of email and password is empty
-    // if (!email || !password) {
-    //   const errMessage = 'Cannot enter an empty email or password';
-    //   return res.status(400).send(errMessage);
-    // }
-
     const queryString = `SELECT * FROM users WHERE users.email = $1;`;
-    // const values = [email];
-    const values = ['yellowbrickroad@yahoo.can'];
+    const values = [req.body.email];
+    console.log('VALUES:: ', values);
     db.query(queryString, values)
       .then(data => {
         const user = data.rows[0];
 
-        // If the email does not exist
-        if (!user) {
+        // If user does not exist
+        if (data.rows.length === 0) {
           const errMessage = 'We cannot find and account with that email address!';
           return res.status(403).send(errMessage);
         }
-
         // If the password is not correct
-        if (!bcrypt.compareSync(password, user.password)) {
+        if (!bcrypt.compareSync(req.body.password, user.password)) {
           const errMessage = 'Incorrect password!';
           return res.status(403).send(errMessage);
         }
 
-        req.session.user_id = user.id;
+        console.log('USER::', user);
+        console.log('id', user.id);
+        // res.send({user: {name: user.name, email: user.email, id: user.id}});
+        console.log('REQ', req.session);
+        console.log('REQ SESSION OPTIONS', req.sessionOptions)
+        req.session.user = user;
+        console.log('REQ USER::', req.session.user);
+        res.redirect('/tasks');
       })
       .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+        console.log('Error: ', err);
       });
-
-      // Redirect to main page
-      res.redirect('/tasks');
   });
 
   // POST api/users/logout - clear the cookie - redirect to main page /tasks
   router.post('/logout', (req, res) => {
     req.session = null;
 
-    res.redirect('/tasks');
+    res.redirect('/login');
   });
 
   // GET api/users/register - render the register page
