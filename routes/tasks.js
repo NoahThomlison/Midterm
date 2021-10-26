@@ -42,7 +42,7 @@ module.exports = (db) => {
         const data = res.rows;
         res.json({ data });
       })
-      .catch(() => {
+      .catch((err) => {
         console.log('Error', err.message);
         res.send(err);
       });
