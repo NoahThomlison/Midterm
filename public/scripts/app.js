@@ -5,9 +5,10 @@ $(document).ready(function(){
 
   $('#newTaskForm').submit(function(event){
     event.preventDefault();
-    const newTask = $('#task-text').val()
+    const newTask = $('#title').val()
+
     let splitString = newTask.split(' ')
-    // console.log(splitString)
+    console.log(splitString)
 
     if(splitString.length = 1){
       console.log('ding')
