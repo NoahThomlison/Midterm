@@ -5,7 +5,7 @@ $(document).ready(function(){
 
   $('#newTaskForm').submit(function(event){
     event.preventDefault();
-    const newTask = $('#task-text').val()
+    const newTask = $('#title').val()
     let splitString = newTask.split(' ')
     // console.log(splitString)
 
