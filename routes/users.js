@@ -45,7 +45,7 @@ module.exports = (db) => {
         }
         req.session.user_id = user.id;
         // Redirect to main page
-        res.redirect('/tasks')
+        res.redirect('/tasks');
       })
       .catch(err => {
         res
@@ -63,7 +63,7 @@ module.exports = (db) => {
 
   // GET api/users/register - render the register page
   router.get('/register', (req, res) => {
-    console.log('In register:', req.session.user_id);
+
     res.render('register');
   });
 
