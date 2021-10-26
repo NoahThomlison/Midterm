@@ -12,14 +12,21 @@ module.exports = (db) => {
 
   // create a new task
   router.post('/new', (req, res) => {
-    const newTaskQuery = `INSERT INTO tasks (title, description, user_id) VALUES ($1. $2, $3)`;
-    const queryParams = [title, description, user_id];
-
+    const newTaskQuery = `INSERT INTO tasks (title, description, category_id, user_id) VALUES ($1, $2, $3, $4)`;
+    const queryParams =
+    [
+      req.body.task,
+      req.body.description,
+      req.body.category,
+      req.body.user
+    ];
+    console.log(queryParams)
     db.query(newTaskQuery, queryParams)
-      .then((res) => {
-        const newTask = res.rows[0];
-        res.send(newTask);
-      })
+      // .then((res) => {
+      //   const newTask = res.rows[0];
+      //   console.log(res.rows)
+      //   res.send(newTask);
+      // })
       .catch((err) =>{
         console.log('Error', err.message);
       });
@@ -70,23 +77,6 @@ module.exports = (db) => {
   router.post('/', (req, res) => {
   })
 })
-})
-
-// /api/tasks/new
-router.post('/new', (req, res) => {
-  let queryString =
-  `INSERT INTO tasks (title, category_id) VALUES ($1, $2)`;
-  let values = [req.body.task, req.body.category]
-  db.query(queryString, values)
-    .then(() => {
-      res.status(200)
-    })
-    .catch(err => {
-      res
-        .status(500)
-        console.log(err.message)
-        .json({ error: err.message });
-    });
 })
 
   // /api/tasks/new

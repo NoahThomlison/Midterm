@@ -55,6 +55,7 @@ module.exports = (db) => {
   return router;
 };
 
+//function which searchs the wikipedia for the keyword given and returns 100 snippets of articles to compare
 function wikiSearch (keyword) {
 
   let url = "https://en.wikipedia.org/w/api.php";
@@ -63,7 +64,7 @@ function wikiSearch (keyword) {
     prop: "extracts",
     list: "search",
     srsearch: keyword,
-    srlimit: 1000,
+    srlimit: 100,
     format: "json",
     exchars: 1200
     };
