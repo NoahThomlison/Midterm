@@ -11,10 +11,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 
-  <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js%22%3E</script>
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/postTask.js"></script>
+
+  <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js%22%3E</script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
 </head>
@@ -50,37 +52,80 @@
 
   <section class='taskLists'>
     <div class='taskLists-groupA'>
+        <!-- <section class='foodList' id='1'>
+          <h4>Food</h4>
+          <% for (const task of tasks.filter(x => x.category_id === 3)) { %>
+          <div>
+            <div><h5>
+              <%= task.title %>
+            </h5></div>
+            <div><%= task.description %></div>
+          </div>
+          <% } %>
+        </section> -->
+
+
       <section class='foodList' id='1'>
-        <h4>Food</h4>
-        <ul>
-        </ul>
+        <h4>Movies and TV</h4>
+        <% for (const task of tasks.filter(x => x.category_id === 1)) { %>
+          <div>
+            <div><h5>
+              <%= task.title %>
+            </h5></div>
+            <div><%= task.description %></div>
+          </div>
+          <% } %>
       </section>
 
       <section class='moviesList' id='2'>
-        <h4>Movies</h4>
-        <ul>
-        </ul>
+        <h4>Restaurants and Cafes</h4>
+        <% for (const task of tasks.filter(x => x.category_id === 2)) { %>
+          <div>
+            <div><h5>
+              <%= task.title %>
+            </h5></div>
+            <div><%= task.description %></div>
+          </div>
+          <% } %>
       </section>
     </div>
 
     <div class='taskLists-groupB'>
       <section class='booksList' id='3'>
-        <h4>Books</h4>
-        <ul>
-        </ul>
+        <h4>Books and Magazines</h4>
+        <% for (const task of tasks.filter(x => x.category_id === 3)) { %>
+          <div>
+            <div><h5>
+              <%= task.title %>
+            </h5></div>
+            <div><%= task.description %></div>
+          </div>
+          <% } %>
       </section>
 
       <section class='productsList' id='4'>
-        <h4>Products</h4>
-        <ul>
-        </ul>
+        <h4>Items and Produce</h4>
+        <% for (const task of tasks.filter(x => x.category_id === 4)) { %>
+          <div>
+            <div><h5>
+              <%= task.title %>
+            </h5></div>
+            <div><%= task.description %></div>
+          </div>
+          <% } %>
       </section>
 
     </div>
     <section class='uncategorizedList' id='5'>
       <h4>Uncategorized</h4>
-      <ul>
-      </ul>
+      <% for (const task of tasks.filter(x => x.category_id === 5)) { %>
+        <div>
+          <div><h5>
+            <%= task.title %>
+          </h5></div>
+          <div><%= task.description %></div>
+        </div>
+        <% } %>
     </section>
   </section>
 
