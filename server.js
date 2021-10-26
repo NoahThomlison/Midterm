@@ -8,6 +8,15 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 
+// Cookie session
+const cookieSession = require('cookie-session');
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['doremi1234567890fasolatido'],
+  maxAge: 24 * 60 * 60 * 1000
+}));
+
 // PG database client/connection setup
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
