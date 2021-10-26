@@ -37,14 +37,9 @@ module.exports = (db) => {
           return res.status(403).send(errMessage);
         }
 
-        console.log('USER::', user);
-        console.log('id', user.id);
-        // res.send({user: {name: user.name, email: user.email, id: user.id}});
-        console.log('REQ', req.session);
-        console.log('REQ SESSION OPTIONS', req.sessionOptions)
-        req.session.user = user;
-        console.log('REQ USER::', req.session.user);
-        res.redirect('/tasks');
+        req.session.user =  {name: user.name, email: user.email, id: user.id};
+        console.log('User Session', req.session.user);
+        res.redirect('/api/tasks');
       })
       .catch(err => {
         console.log('Error: ', err);
