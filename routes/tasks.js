@@ -26,19 +26,20 @@ module.exports = (db) => {
   });
 
 
-  // view all tasks
+  // view all tasks from a user
   router.get('/', (req, res) => {
+    const user = req.session.user;
     const queryString = `SELECT * FROM tasks WHERE user_id = $1`
-    const values = [req.params.user.id];
-    console.log('VALUES:: ', values);
-    db.query(queryString, values)
-      .then ((res) => {
-        const data = res.rows;
-        res.json({ data });
-      })
-      .catch(() => {
-        console.log('Error', err.message);
-        res.send(err);
+    const values = [user.id];
+    return db.query(queryString, values)
+    .then ((data) => {
+      const tasks = data.rows;
+      console.log('DATA SQL::::::: ', tasks);
+      const templateVars = { tasks }
+      res.render("index", templateVars);
+    })
+      .catch((err) => {
+        console.log('Error', err);
       });
   });
 
