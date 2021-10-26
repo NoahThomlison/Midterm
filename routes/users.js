@@ -38,7 +38,6 @@ module.exports = (db) => {
           const errMessage = 'We cannot find and account with that email address!';
           return res.status(403).send(errMessage);
         }
-
         // If the password is not correct
         if (!bcrypt.compareSync(password, user.password)) {
           const errMessage = 'Incorrect password!';
