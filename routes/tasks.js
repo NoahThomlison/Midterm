@@ -29,7 +29,8 @@ module.exports = (db) => {
   // view all tasks
   router.get('/', (req, res) => {
     const queryString = `SELECT * FROM tasks WHERE user_id = $1`
-    const values = [1];
+    const values = [req.params.user.id];
+    console.log('VALUES:: ', values);
     db.query(queryString, values)
       .then ((res) => {
         const data = res.rows;
