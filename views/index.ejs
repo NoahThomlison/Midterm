@@ -8,81 +8,188 @@
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/newTaskForm.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/index.css" type="text/css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js%22%3E</script>
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/scripts/newTask.js"></script>
 
 </head>
 
 <body>
-  <header>
-    <nav class="navbar navbar-light justify-content-end" style="background-color: #e3f2fd;">
+  <%- include('partials/_header') %>
+  <!-- <header>
+    <nav class="navbar navbar-light justify-content-end" style="background-color: #e3f2fd;"> -->
       <!-- Navbar content -->
-        <h5 class="welcome-name mx-5">Hello there, name</h5>
+        <!-- <h5 class="welcome-name mx-5">Hello there, name</h5>
         <input class="btn btn-primary mx-2" name="login" type="submit" value="Logout">
     </nav>
-  </header>
+  </header> -->
   <!-- New Task Area -->
-  <section class="new-task-form">
-    <div class="container mt-3">
-      <a href="#new-task" class="btn btn-primary" data-bs-toggle="collapse">New Task</a>
-      <div id="new-task" class="collapse">
-        This is a Demo only
+  <div style="margin-left: 100px; width: 90%; height: 100vh; display: flex; flex-direction: column;">
+    <div>
+      <section style="width: auto;" class="new-task-form">
+        <div style="text-align:center">
+          <i class="far fa-hand-point-right"></i>
+          <button class="btn btn-primary" id="new-task-button" type="submit">New Task</button>
+        </div>
+        <div>
+          <form style="display: none; margin: 0 30%;" id='newTaskForm' method="POST" action="/api/tasks">
+            <div class="new-task-title">
+              <label for="title">Title</label>
+              <input id="title" type="text" name="title" placeholder="Enter title">
+            </div>
+            <div class="new-task-description">
+              <label for="description">Description</label>
+              <input id="description" type="text" name="password" placeholder="Description">
+            </div>
+            <div class="new-task-set-reminder">
+              <label for="set-reminder">Set reminder</label>
+              <select id="set-reminder" name="set-reminder">
+                <option value="01">No</option>
+                <option value="02">Yes</option>
+              </select>
+            </div>
+            <div style="display: none;" class="new-task-reminder-date">
+              <h6>Reminder-date</h6>
+              <div class="new-task-reminder-date-day">
+                <label for="reminder-date-day">Day</label>
+                <select id="reminder-date-day" name="reminder-date-day">
+                  <option value="">Day</option>
+                  <option value="01">1</option>
+                  <option value="02">2</option>
+                  <option value="03">3</option>
+                  <option value="04">4</option>
+                  <option value="05">5</option>
+                  <option value="06">6</option>
+                  <option value="07">7</option>
+                  <option value="08">8</option>
+                  <option value="09">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                </select>
+              </div>
+              <div class="new-task-reminder-date-month">
+                <label for="reminder-date-month">Month</label>
+                <select id="reminder-date-month" name="reminder-date-month">
+                  <option value="">Month</option>
+                  <option value="01">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+              </div>
+
+              <div class="new-task-reminder-date-year">
+                <label for="reminder-date-month">Year</label>
+                <select id="reminder-date-year" name="reminder-date-year">
+                  <option value="">Year</option>
+                  <option value="2021">2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                  <option value="2025">2025</option>
+                  <option value="2026">2026</option>
+                  <option value="2027">2027</option>
+                  <option value="2028">2028</option>
+                  <option value="2029">2029</option>
+                  <option value="2030">2030</option>
+                </select>
+              </div>
+            </div>
+            <div class="new-task-form-submit-button">
+              <button class="btn btn-warning" type="submit">Create</button>
+            </div>
+          </form>
+        </div>
+        <!-- New Task Box -->
+        <!-- <div class="new-task">
+          <h2>Add New Task</h2>
+          <form id='newTaskForm' method="" action="">
+            <textarea name="text" id="task-text" required></textarea>
+            <button id='newTaskFormSubmit' type="submit">Submit</button>
+          </form>
+        </div> -->
+        <!-- End Task Box -->
+      </section>
+    </div>
+    <div style="height: 90%; width: auto;" class='taskLists'>
+      <div style="display: flex; flex-direction: row; height: 80%;" class='taskLists-groupA'>
+        <section class='foodList' id='1'>
+          <h4>Food</h4>
+          <ul>
+          </ul>
+        </section>
+
+        <section class='moviesList' id='2'>
+          <h4>Movies</h4>
+          <ul>
+          </ul>
+        </section>
+
+        <section class='booksList' id='3'>
+          <h4>Books</h4>
+          <ul>
+          </ul>
+        </section>
+
+        <section class='productsList' id='4'>
+          <h4>Products</h4>
+          <ul>
+          </ul>
+        </section>
+      </div>
+
+      <div style="height: 20%;">
+        <section style="width: auto; height: 100%;" class='uncategorizedList' id='5'>
+          <h4>Uncategorized</h4>
+          <ul>
+          </ul>
+        </section>
       </div>
     </div>
-    <!-- New Task Box -->
-    <!-- <div class="new-task">
-      <h2>Add New Task</h2>
-      <form id='newTaskForm' method="" action="">
-        <textarea name="text" id="task-text" required></textarea>
-        <button id='newTaskFormSubmit' type="submit">Submit</button>
-      </form>
-    </div> -->
-    <!-- End Task Box -->
-  </section>
+  </div>
+
   <!-- End Task Area -->
   <i class="fa-solid fa-list-radio"></i>
 
-  <section class='taskLists'>
-    <div class='taskLists-groupA'>
-      <section class='foodList' id='1'>
-        <h4>Food</h4>
-        <ul>
-        </ul>
-      </section>
 
-      <section class='moviesList' id='2'>
-        <h4>Movies</h4>
-        <ul>
-        </ul>
-      </section>
-    </div>
-
-    <div class='taskLists-groupB'>
-      <section class='booksList' id='3'>
-        <h4>Books</h4>
-        <ul>
-        </ul>
-      </section>
-
-      <section class='productsList' id='4'>
-        <h4>Products</h4>
-        <ul>
-        </ul>
-      </section>
-
-    </div>
-    <section class='uncategorizedList' id='5'>
-      <h4>Uncategorized</h4>
-      <ul>
-      </ul>
-    </section>
-  </section>
 
 </body>
 

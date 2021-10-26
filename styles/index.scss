@@ -1,0 +1,51 @@
+i {
+  margin-right: 5px;
+  vertical-align: middle;
+  font-size: 25px;
+  color: red;
+  animation: move 0.5s infinite;
+  animation-direction: alternate;
+}
+@keyframes move {
+  0%
+  {
+    transform: translateX(-5px);
+  }
+  100%
+  {
+    transform: translateX(5px);
+  }
+}
+
+.foodList {
+  margin-right: 5px;
+  border: 1px solid #8a008a;
+  background-color: #8a008a;
+  background-image: url("https://www.transparenttextures.com/patterns/food.png");
+}
+
+.booksList {
+  margin-right: 5px;
+  border: 1px solid #00b371;
+  background-color: #00b371;
+  background-image: url("https://www.transparenttextures.com/patterns/notebook-dark.png");
+}
+
+.moviesList {
+  margin-right: 5px;
+  border: 1px solid #0097e8;
+  background-color: #0097e8;
+  background-image: url("https://www.transparenttextures.com/patterns/crissxcross.png");
+}
+
+.productsList {
+  border: 1px solid #5fb300;
+  background-color: #5fb300;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+}
+
+.uncategorizedList {
+  border: 1px solid #a5b395;
+  background-color: #a5b395;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-wall.png");
+}
