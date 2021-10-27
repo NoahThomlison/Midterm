@@ -82,19 +82,21 @@ module.exports = (db) => {
     });
  });
 
-  // IS THIS CORRECT? IT SEEMS FUNNY?
   // delete a specific task
   router.post('/:tasksId/delete', (req, res) => {
   let deleteTaskQuery = `DELETE FROM tasks WHERE id = $1`;
-  const values = [taskID];
+  console.log(req.body.tasksId)
+  // const values = [taskID];
+  const values = [req.body.tasksId];
 
   db.query(deleteTaskQuery, values)
     .then(()=> {
       res.status(200);
       console.log('Sucessfully deleted task');
+      res.send();
   // /api/tasks/
-  router.post('/', (req, res) => {
-  })
+  // router.post('/', (req, res) => {
+  // })
 })
 })
 
