@@ -12,7 +12,7 @@ module.exports = (db) => {
 
   // create a new task
   router.post('/new', (req, res) => {
-    const newTaskQuery = `INSERT INTO tasks (title, description, category_id, user_id) VALUES ($1, $2, $3, $4)`;
+    const newTaskQuery = `INSERT INTO tasks (title, description, category_id, user_id) VALUES ($1, $2, $3, $4) RETURNING *;`;
     const queryParams =
     [
       req.body.task,
@@ -22,11 +22,10 @@ module.exports = (db) => {
     ];
     console.log(queryParams)
     db.query(newTaskQuery, queryParams)
-      // .then((res) => {
-      //   const newTask = res.rows[0];
-      //   console.log(res.rows)
-      //   res.send(newTask);
-      // })
+        .then((data) => {
+        const updatedTask = data.rows[0];
+        res.send(updatedTask);
+      })
       .catch((err) =>{
         console.log('Error', err.message);
       });
@@ -35,17 +34,37 @@ module.exports = (db) => {
 
   // view all tasks
   router.get('/', (req, res) => {
-    const queryString = `SELECT * FROM tasks WHERE user_id = $1`
-    const values = [1];
+    const userId = req.session.user_id;
+    const queryString = `SELECT * FROM tasks WHERE user_id = $1;`;
+    const values = [userId];
     db.query(queryString, values)
-      .then ((res) => {
-        const data = res.rows;
-        res.json({ data });
+      .then(result => {
+        const tasks = result.rows;
+        const tasksFood = [];
+        const tasksMovies = [];
+        const tasksBooks = [];
+        const tasksProducts = [];
+        const tasksUncategorized = [];
+        for (let task of tasks) {
+          const categoryId = task.category_id
+          if (categoryId === 1) {
+            tasksMovies.push(task);
+          } else if (categoryId === 2) {
+            tasksFood.push(task);
+          } else if (categoryId === 3) {
+            tasksBooks.push(task);
+          } else if (categoryId === 4) {
+            tasksProducts.push(task);
+          } else {
+            tasksUncategorized.push(task);
+          }
+        }
+
+        const templateVars = { tasksFood, tasksMovies, tasksBooks, tasksProducts,tasksUncategorized };
+        res.render('index', templateVars);
+        // renderAllTasks(tasks);
       })
-      .catch(() => {
-        console.log('Error', err.message);
-        res.send(err);
-      });
+      .catch(err => console.log(err.message));
   });
 
   // view all tasks per category
@@ -81,16 +100,6 @@ module.exports = (db) => {
 
   // /api/tasks/new
 router.get("/new", (req, res) => {
-  let query = `SELECT * FROM tasks`;
-  console.log(query);
-  db.query(query)
-    .then(data => {
-      const tasks = data.rows;
-      res.json({ tasks });
-    })
-    .catch((err) => {
-      console.log('Error', err.message);
-    });
   });
 
     // update a task
