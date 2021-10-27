@@ -144,19 +144,19 @@
     </div>
     <div style="height: 90%; width: auto;" class='taskLists'>
       <div style="display: flex; flex-direction: row; height: 80%;" class='taskLists-groupA'>
-        <section class='foodList' id='1'>
-          <h4>Food</h4>
-          <ul class="sub-container-food">
-            <% for (let task of tasksFood) { %>
-              <li><%= task.title %></li>
-            <% } %>
-          </ul>
-        </section>
-        <section class='moviesList' id='2'>
+        <section class='moviesList' id='1'>
           <h4>Movies</h4>
           <ul class="sub-container-movies">
             <% for (let task of tasksMovies) { %>
-              <li><%= task.title %></li>
+              <li><a href="/api/tasks/<%= task.id %>"><%= task.title %></a></li>
+            <% } %>
+          </ul>
+        </section>
+        <section class='foodList' id='2'>
+          <h4>Food</h4>
+          <ul class="sub-container-food">
+            <% for (let task of tasksFood) { %>
+              <li><a href="/api/tasks/<%= task.id %>"><%= task.title %></a></li>
             <% } %>
           </ul>
         </section>
@@ -164,7 +164,7 @@
           <h4>Books</h4>
           <ul class="sub-container-books">
             <% for (let task of tasksBooks) { %>
-              <li><%= task.title %></li>
+              <li><a href="/api/tasks/<%= task.id %>"><%= task.title %></a></li>
             <% } %>
           </ul>
         </section>
@@ -172,7 +172,7 @@
           <h4>Products</h4>
           <ul class="sub-container-products" id='4'>
             <% for (let task of tasksProducts) { %>
-              <li><%= task.title %></li>
+              <li><a href="/api/tasks/<%= task.id %>"><%= task.title %></a></li>
             <% } %>
           </ul>
         </section>
@@ -182,7 +182,7 @@
           <h4>Uncategorized</h4>
           <ul class="sub-container-uncategorized">
             <% for (let task of tasksUncategorized) { %>
-            <li><%= task.title %></li>
+              <li><a href="/api/tasks/<%= task.id %>"><%= task.title %></a></li>
             <% } %>
           </ul>
         </section>
