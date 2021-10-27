@@ -57,15 +57,15 @@ app.use("/api/keywords", keywordsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-// app.get("/", (req, res) => {
-//   res.render("index");
-// });
+app.get("/", (req, res) => {
+  res.redirect("/api/users/login");
+});
 
-// app.get("/tasks", (req, res) => {
-//   console.log('hello')
-//   res.render("index");
+app.get("/tasks", (req, res) => {
+  console.log('hello')
+  res.render("index");
 
-// });
+});
 
 // app.post("/tasks/new", (req, res) => {
 //   console.log(req.body)

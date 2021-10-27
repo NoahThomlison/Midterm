@@ -40,7 +40,7 @@ module.exports = (db) => {
     const values = [userId];
     db.query(queryString, values)
       .then(result => {
-        console.log(result);
+
         const tasks = result.rows;
         const tasksFood = [];
         const tasksMovies = [];
