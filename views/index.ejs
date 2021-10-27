@@ -146,33 +146,44 @@
       <div style="display: flex; flex-direction: row; height: 80%;" class='taskLists-groupA'>
         <section class='foodList' id='1'>
           <h4>Food</h4>
-          <ul>
+          <ul class="sub-container-food">
+            <% for (let task of tasksFood) { %>
+              <li><%= task.title %></li>
+            <% } %>
           </ul>
         </section>
-
         <section class='moviesList' id='2'>
           <h4>Movies</h4>
-          <ul>
+          <ul class="sub-container-movies">
+            <% for (let task of tasksMoives) { %>
+              <li><%= task.title %></li>
+            <% } %>
           </ul>
         </section>
-
         <section class='booksList' id='3'>
           <h4>Books</h4>
-          <ul>
+          <ul class="sub-container-books">
+            <% for (let task of tasksBooks) { %>
+              <li><%= task.title %></li>
+            <% } %>
           </ul>
         </section>
-
         <section class='productsList' id='4'>
           <h4>Products</h4>
-          <ul>
+          <ul class="sub-container-products">
+            <% for (let task of tasksProducts) { %>
+              <li><%= task.title %></li>
+            <% } %>
           </ul>
         </section>
       </div>
-
       <div style="height: 20%;">
         <section style="width: auto; height: 100%;" class='uncategorizedList' id='5'>
           <h4>Uncategorized</h4>
-          <ul>
+          <ul class="sub-container-uncategorized">
+            <% for (let task of tasksUncategorized) { %>
+            <li><%= task.title %></li>
+            <% } %>
           </ul>
         </section>
       </div>

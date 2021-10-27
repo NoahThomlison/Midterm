@@ -12,6 +12,10 @@ $(document).ready(function(){
     console.log(description)
     console.log(splitString)
     let user = 1
+    const newTask = $('#title').val()
+    let splitString = newTask.split(' ')
+    // console.log(splitString)
+
     if(splitString.length = 1){
       console.log('ding')
       $.post('api/keywords', {keyword: task})

@@ -45,7 +45,7 @@ module.exports = (db) => {
         }
         req.session.user_id = user.id;
         // Redirect to main page
-        res.redirect('/tasks');
+        res.redirect('/api/tasks');
       })
       .catch(err => {
         res
