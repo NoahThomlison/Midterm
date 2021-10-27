@@ -17,12 +17,8 @@ $(document).ready(function(){
       .then((category) => {
         console.log(category)
         $.post('/api/tasks/new', {task, description, category, user})
-
-
-
-
         $(`#${category}`).append(
-          `<li class='toDoListItem'>
+          `<li class='toDoListItem id=${id}'>
             <div class='toDoRightSide'>
               <button class='listButton'>
               <i class="fas fa-check-circle"></i>
