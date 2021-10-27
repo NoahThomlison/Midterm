@@ -18,7 +18,7 @@ $(document).ready(function(){
         console.log(category)
         $.post('/api/tasks/new', {task, description, category, user})
         $(`#${category}`).append(
-          `<li class='toDoListItem id=${id}'>
+          `<li class='toDoListItem id='>
             <div class='toDoRightSide'>
               <button class='listButton'>
               <i class="fas fa-check-circle"></i>

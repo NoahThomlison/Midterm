@@ -42,7 +42,7 @@ module.exports = (db) => {
         const tasksBooks = [];
         const tasksProducts = [];
         const tasksUncategorized = [];
-        console.log(results)
+        console.log(result)
         for (let task of tasks) {
           const categoryId = task.category_id
           if (categoryId === 1) {
