@@ -22,11 +22,6 @@ module.exports = (db) => {
     ];
     console.log(queryParams)
     db.query(newTaskQuery, queryParams)
-      // .then((res) => {
-      //   const newTask = res.rows[0];
-      //   console.log(res.rows)
-      //   res.send(newTask);
-      // })
       .catch((err) =>{
         console.log('Error', err.message);
       });
@@ -47,6 +42,7 @@ module.exports = (db) => {
         const tasksBooks = [];
         const tasksProducts = [];
         const tasksUncategorized = [];
+        console.log(results)
         for (let task of tasks) {
           const categoryId = task.category_id
           if (categoryId === 1) {
