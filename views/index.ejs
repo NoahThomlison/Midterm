@@ -146,9 +146,20 @@
       <div style="display: flex; flex-direction: row; height: 80%;" class='taskLists-groupA'>
         <section class='foodList' id='1'>
           <h4>Food</h4>
-          <ul class="sub-container-food">
+          <ul class='sub-container-food'>
             <% for (let task of tasksFood) { %>
-              <li><%= task.title %></li>
+              <li class='toDoListItem' id=`<%= task.id %>`>
+                <div class='toDoRightSide'>
+                  <button class='listButton'>
+                    <i class='fas fa-check-circle'></i>
+                    <i class='fas fa-minus-circle'></i>
+                  </button>
+                </div>
+                <%= task.title %>
+                <button class='listButton'>
+                  <i class='fas fa-filter'></i>
+                </button>
+              </li>
             <% } %>
           </ul>
         </section>
@@ -156,7 +167,18 @@
           <h4>Movies</h4>
           <ul class="sub-container-movies">
             <% for (let task of tasksMovies) { %>
-              <li><%= task.title %></li>
+              <li class='toDoListItem' id=`<%= task.id %>`>
+                <div class='toDoRightSide'>
+                  <button class='listButton'>
+                    <i class='fas fa-check-circle'></i>
+                    <i class='fas fa-minus-circle'></i>
+                  </button>
+                </div>
+                <%= task.title %>
+                <button class='listButton'>
+                  <i class='fas fa-filter'></i>
+                </button>
+              </li>
             <% } %>
           </ul>
         </section>
@@ -164,7 +186,18 @@
           <h4>Books</h4>
           <ul class="sub-container-books">
             <% for (let task of tasksBooks) { %>
-              <li><%= task.title %></li>
+              <li class='toDoListItem' id=`<%= task.id %>`>
+                <div class='toDoRightSide'>
+                  <button class='listButton'>
+                    <i class='fas fa-check-circle'></i>
+                    <i class='fas fa-minus-circle'></i>
+                  </button>
+                </div>
+                <%= task.title %>
+                <button class='listButton'>
+                  <i class='fas fa-filter'></i>
+                </button>
+              </li>
             <% } %>
           </ul>
         </section>
@@ -172,7 +205,18 @@
           <h4>Products</h4>
           <ul class="sub-container-products" id='4'>
             <% for (let task of tasksProducts) { %>
-              <li><%= task.title %></li>
+              <li class='toDoListItem' id=`<%= task.id %>`>
+                <div class='toDoRightSide'>
+                  <button class='listButton'>
+                    <i class='fas fa-check-circle'></i>
+                    <i class='fas fa-minus-circle'></i>
+                  </button>
+                </div>
+                <%= task.title %>
+                <button class='listButton'>
+                  <i class='fas fa-filter'></i>
+                </button>
+              </li>
             <% } %>
           </ul>
         </section>
@@ -182,7 +226,18 @@
           <h4>Uncategorized</h4>
           <ul class="sub-container-uncategorized">
             <% for (let task of tasksUncategorized) { %>
-            <li><%= task.title %></li>
+              <li class='toDoListItem' id=`<%= task.id %>`>
+                <div class='toDoRightSide'>
+                  <button class='listButton'>
+                    <i class='fas fa-check-circle'></i>
+                    <i class='fas fa-minus-circle'></i>
+                  </button>
+                </div>
+                <%= task.title %>
+                <button class='listButton'>
+                  <i class='fas fa-filter'></i>
+                </button>
+              </li>
             <% } %>
           </ul>
         </section>
