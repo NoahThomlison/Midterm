@@ -76,31 +76,6 @@ module.exports = (db) => {
     //   });
   });
 
-  // view task details
-  router.get('/:taskId', (req, res) =>{
-    const userId = req.session.user_id;
-    const taskId = req.params.taskId;
-
-    const queryString = `SELECT * FROM tasks WHERE id = $1`;
-    const values  = [taskId];
-
-    db.query(queryString, values)
-      .then ((data) => {
-        const task = data.rows[0];
-        const templateVars = { task };
-        res.render('task', templateVars);
-      })
-      .catch((err) => {
-        console.log('Error: ', err.message);
-      });
-
-  })
-
-
-
-
-
-
   // view all tasks per category
  router.get('/category/:category_id', (req, res) => {
    let queryString = `SELECT * FROM categories WHERE category_id = $1 AND user_id = $2`;
@@ -146,15 +121,10 @@ router.get("/new", (req, res) => {
     });
   });
 
-
-
-
     // update a task
-  router.post('/tasks/:tasksId', (req, res) => {
-    const userId = req.session.user_id;
-    const newTitle = req.body.
+  router.post('/:tasksId/update', (req, res) => {
     let updateTaskQuery = `UPDATE tasks SET title = $1 WHERE id = $2 RETURNING *`;
-    let values = [, userId];
+    let values = ['This is a TEST title change', 1];
 
     db.query(updateTaskQuery, values)
       .then((res) => {
