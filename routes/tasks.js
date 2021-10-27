@@ -82,10 +82,9 @@ module.exports = (db) => {
 
   // view task details
   router.get('/:taskId', (req, res) =>{
-    const userId = req.session.user_id;
     const taskId = req.params.taskId;
 
-    const queryString = `SELECT * FROM tasks WHERE id = $1`;
+    const queryString = `SELECT tasks.*, categories.type as category_type FROM tasks JOIN categories ON category_id = categories.id WHERE tasks.id = $1`;
     const values  = [taskId];
 
     db.query(queryString, values)
@@ -99,10 +98,6 @@ module.exports = (db) => {
       });
 
   })
-
-
-
-
 
 
   // view all tasks per category
@@ -120,21 +115,23 @@ module.exports = (db) => {
     });
  });
 
-  // IS THIS CORRECT? IT SEEMS FUNNY?
   // delete a specific task
-  router.post('/:tasksId/delete', (req, res) => {
-  let deleteTaskQuery = `DELETE FROM tasks WHERE id = $1`;
-  const values = [taskID];
+  router.post('/delete/:taskId', (req, res) => {
+  const taskId = req.params.taskId;
 
-  db.query(deleteTaskQuery, values)
+  let queryString = `DELETE FROM tasks WHERE id = $1`;
+  const values = [taskId];
+
+  db.query(queryString, values)
     .then(()=> {
       res.status(200);
       console.log('Sucessfully deleted task');
-  // /api/tasks/
-  router.post('/', (req, res) => {
-  })
-})
-})
+    })
+    .catch(() => {
+      console.log('Error: ', err.message);
+    });
+  });
+
 
   // /api/tasks/new
 router.get("/new", (req, res) => {
@@ -151,33 +148,32 @@ router.get("/new", (req, res) => {
   });
 
 
-
-
     // update a task
-  router.post('/tasks/:tasksId', (req, res) => {
-    const userId = req.session.user_id;
-    const newTitle = req.body.
-    let updateTaskQuery = `UPDATE tasks SET title = $1 WHERE id = $2 RETURNING *`;
-    let values = [, userId];
+  // router.post('/tasks/modify/:tasksId', (req, res) => {
+  //   const userId = req.session.user_id;
+  //   const newTitle = req.body.
+  //   let updateTaskQuery = `UPDATE tasks SET title = $1 WHERE id = $2 RETURNING *`;
+  //   let values = [, userId];
 
-    db.query(updateTaskQuery, values)
-      .then((res) => {
-        const updatedTask = res.rows[0];
-        res.send(updatedTask);
-      })
-      .catch((err) => {
-        console.log('Error', err.message);
-      });
-  });
+  //   db.query(updateTaskQuery, values)
+  //     .then((res) => {
+  //       const updatedTask = res.rows[0];
+  //       res.send(updatedTask);
+  //     })
+  //     .catch((err) => {
+  //       console.log('Error', err.message);
+  //     });
+  // });
 
     // mark task as complete
   router.post('/:taskId', (req, res) => {
-    const markCompleteQuery = `UPDATE tasks SET completion_status = TRUE WHERE id = $1`;
-    const queryParams = [taskID];
+    const taskId = req.params.taskId;
+    const queryParams = `UPDATE tasks SET completion_status = TRUE WHERE id = $1 RETURNING *`;
+    const values = [taskId];
 
-    db.query(markCompleteQuery, queryParams)
-      .then((res) => {
-        const taskComplete = res.rows[0];
+    db.query(queryParams, values)
+      .then((data) => {
+        const taskComplete = data.rows[0];
         res.send(taskComplete);
       })
       .catch((err) => {
