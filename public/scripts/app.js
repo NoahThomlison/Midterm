@@ -1,6 +1,6 @@
 // Client facing scripts here
 // import fetch from "node-fetch";
-
+// deleteButton = require('./delete')
 $(document).ready(function(){
 
   $('#newTaskForm').submit(function(event){
@@ -23,11 +23,11 @@ $(document).ready(function(){
         $(`#${category}`).append(
           `<li class='toDoListItem' id='${newTaskData.id}'>
             <div class='toDoRightSide'>
-              <button class='listButton'>
-              <i class="fas fa-check-circle"></i>
+              <button class='listButtonComplete' id='${newTaskData.id}-CompleteButton'>
+                <i class="fas fa-check-circle"></i>
               </button>
-              <button class='listButton'>
-                <i class="fas fa-minus-circle"></i>
+              <button class='listButtonDelete' id='${newTaskData.id}-DeleteButton'>
+                <i class="fas fa-minus-circle"'></i>
               </button>
               <div class="task">${task}
               </div>
@@ -36,7 +36,9 @@ $(document).ready(function(){
               <i class="fas fa-filter"></i>
             </button>
           </li>`)
-        $('#task-text').val('')
+
+        //run delete button function which adds the eventListeners
+        deleteButton()
       })
     })
   })
