@@ -59,6 +59,8 @@ app.use("/api/keywords", keywordsRoutes(db));
 
 app.get("/", (req, res) => {
   res.redirect("/api/users/login");
+  // res.redirect("/api/tasks");
+
 });
 
 app.get("/tasks", (req, res) => {

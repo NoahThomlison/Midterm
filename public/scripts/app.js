@@ -12,16 +12,11 @@ $(document).ready(function(){
     console.log(description)
     console.log(splitString)
     let user = 1
-    const newTask = $('#title').val()
-    let splitString = newTask.split(' ')
-    // console.log(splitString)
-
-    if(splitString.length = 1){
       console.log('ding')
-      $.post('api/keywords', {keyword: task})
+      $.post('/api/keywords', {keyword: task})
       .then((category) => {
         console.log(category)
-        $.post('api/tasks/new', {task, description, category, user})
+        $.post('/api/tasks/new', {task, description, category, user})
 
 
 
@@ -46,5 +41,5 @@ $(document).ready(function(){
         }
       )
     }
-  })
+  )
 });
