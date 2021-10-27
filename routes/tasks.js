@@ -12,7 +12,7 @@ module.exports = (db) => {
 
   // create a new task
   router.post('/new', (req, res) => {
-    const newTaskQuery = `INSERT INTO tasks (title, description, category_id, user_id) VALUES ($1, $2, $3, $4)`;
+    const newTaskQuery = `INSERT INTO tasks (title, description, category_id, user_id) VALUES ($1, $2, $3, $4) RETURNING *;`;
     const queryParams =
     [
       req.body.task,
@@ -22,6 +22,10 @@ module.exports = (db) => {
     ];
     console.log(queryParams)
     db.query(newTaskQuery, queryParams)
+        .then((data) => {
+        const updatedTask = data.rows[0];
+        res.send(updatedTask);
+      })
       .catch((err) =>{
         console.log('Error', err.message);
       });
@@ -35,14 +39,12 @@ module.exports = (db) => {
     const values = [userId];
     db.query(queryString, values)
       .then(result => {
-
         const tasks = result.rows;
         const tasksFood = [];
         const tasksMovies = [];
         const tasksBooks = [];
         const tasksProducts = [];
         const tasksUncategorized = [];
-        console.log(result)
         for (let task of tasks) {
           const categoryId = task.category_id
           if (categoryId === 1) {
@@ -63,17 +65,6 @@ module.exports = (db) => {
         // renderAllTasks(tasks);
       })
       .catch(err => console.log(err.message));
-    // const queryString = `SELECT * FROM tasks WHERE user_id = $1`
-    // const values = [1];
-    // db.query(queryString, values)
-    //   .then ((res) => {
-    //     const data = res.rows;
-    //     res.json({ data });
-    //   })
-    //   .catch(() => {
-    //     console.log('Error', err.message);
-    //     res.send(err);
-    //   });
   });
 
   // view all tasks per category
@@ -109,16 +100,6 @@ module.exports = (db) => {
 
   // /api/tasks/new
 router.get("/new", (req, res) => {
-  let query = `SELECT * FROM tasks`;
-  console.log(query);
-  db.query(query)
-    .then(data => {
-      const tasks = data.rows;
-      res.json({ tasks });
-    })
-    .catch((err) => {
-      console.log('Error', err.message);
-    });
   });
 
     // update a task

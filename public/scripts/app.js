@@ -5,20 +5,23 @@ $(document).ready(function(){
 
   $('#newTaskForm').submit(function(event){
     event.preventDefault();
+
+    //get task name and description from the form
     const task = $('#title').val()
     const description = $('#description').val()
-    let splitString = task.split(' ')
-    console.log(task)
-    console.log(description)
-    console.log(splitString)
+
     let user = 1
-      console.log('ding')
-      $.post('/api/keywords', {keyword: task})
-      .then((category) => {
-        console.log(category)
-        $.post('/api/tasks/new', {task, description, category, user})
+
+    //post to end point which sorts the keywords
+    $.post('/api/keywords', {keyword: task})
+    .then((category) => {
+
+      //post new task information to db, returing the newtask information from db
+      $.post('/api/tasks/new', {task, description, category, user}).then((newTaskData) => {
+
+        //append new task to the front end
         $(`#${category}`).append(
-          `<li class='toDoListItem id='>
+          `<li class='toDoListItem' id='${newTaskData.id}'>
             <div class='toDoRightSide'>
               <button class='listButton'>
               <i class="fas fa-check-circle"></i>
@@ -34,8 +37,7 @@ $(document).ready(function(){
             </button>
           </li>`)
         $('#task-text').val('')
-        }
-      )
-    }
-  )
+      })
+    })
+  })
 });
