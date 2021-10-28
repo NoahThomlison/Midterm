@@ -12,13 +12,14 @@ module.exports = (db) => {
 
   // create a new task
   router.post('/new', (req, res) => {
+    const userId = req.session.user_id;
     const newTaskQuery = `INSERT INTO tasks (title, description, category_id, user_id) VALUES ($1, $2, $3, $4) RETURNING *;`;
     const queryParams =
     [
       req.body.task,
       req.body.description,
       req.body.category,
-      req.body.user
+      userId
     ];
     console.log(queryParams)
     db.query(newTaskQuery, queryParams)
@@ -102,16 +103,17 @@ module.exports = (db) => {
     });
  });
 
+//  /api/tasks
   // delete a specific task
-  router.post('/delete/:taskId', (req, res) => {
-  const taskId = req.params.taskId;
+  router.post('/:tasksId/delete', (req, res) => {
+  const taskId = req.params.tasksId;
 
   let queryString = `DELETE FROM tasks WHERE id = $1`;
   const values = [taskId];
 
   db.query(queryString, values)
     .then(()=> {
-      res.status(200);
+      res.status(200).send();
       console.log('Sucessfully deleted task');
     })
     .catch(() => {
@@ -157,11 +159,13 @@ router.get("/new", (req, res) => {
   // });
 
     // mark task as complete
-  router.post('/:taskId', (req, res) => {
-    const taskId = req.params.taskId;
+  router.post('/:tasksId', (req, res) => {
+    console.log('ding')
+
+    const taskId = req.params.tasksId;
     const queryParams = `UPDATE tasks SET completion_status = TRUE WHERE id = $1 RETURNING *`;
     const values = [taskId];
-
+    console.log(values)
     db.query(queryParams, values)
       .then((data) => {
         const taskComplete = data.rows[0];
