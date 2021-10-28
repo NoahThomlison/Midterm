@@ -11,5 +11,3 @@ completeButton = () => {
     })
   }))
 }
-
-// module.exports = completeButton;
