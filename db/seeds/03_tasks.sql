@@ -11,7 +11,7 @@ INSERT INTO tasks (title, description, category_id, user_id, set_reminder, remin
 INSERT INTO tasks (title, description, category_id, user_id, set_reminder, reminder_date, completion_status) VALUES
 ('New book by RR Tolkien', 'Release is on Thursday', 3, 1, FALSE, null, FALSE);
 INSERT INTO tasks (title, description, category_id, user_id, set_reminder, reminder_date, completion_status) VALUES ('Checkout newly opened Chinese restaurant', 'Dont forget to remind Noah to join', 2, 1, FALSE, null, FALSE);
-INSERT INTO tasks (title, description, category_id, user_id, set_reminder, reminder_date, completion_status) VALUES ('Netflix Witcher Season 2', 'Release is on Saturday', 2, 2, FALSE, null, FALSE);
+INSERT INTO tasks (title, description, category_id, user_id, set_reminder, reminder_date, completion_status) VALUES ('Netflix Witcher Season 2', 'Release is on Saturday', 1, 2, FALSE, null, FALSE);
 INSERT INTO tasks (title, description, category_id, user_id, set_reminder, reminder_date, completion_status) VALUES ('Grocery run', 'Milk, eggs, bacon', 4, 2, FALSE, null, FALSE);
 INSERT INTO tasks (title, description, category_id, user_id, set_reminder, reminder_date, completion_status) VALUES
 ('John Wick Chapter 4', 'New trailer drop', 5, 1, FALSE, null, FALSE);

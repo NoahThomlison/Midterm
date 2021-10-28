@@ -90,17 +90,37 @@ module.exports = (db) => {
 
   // view all tasks per category
  router.get('/category/:category_id', (req, res) => {
-   let queryString = `SELECT * FROM categories WHERE category_id = $1 AND user_id = $2`;
-   let values = [1, 1];
-   db.query(queryString, values)
-    .then((res) => {
-      const data = res.rows;
-      res.json( { data });
-    })
-    .catch((err) => {
-      console.log('Error', err.message);
-      res.send(err);
-    });
+  //  let queryString = `SELECT * FROM categories WHERE category_id = $1 AND user_id = $2`;
+  //  let values = [1, 1];
+  //  db.query(queryString, values)
+  //   .then((res) => {
+  //     const data = res.rows;
+  //     res.json( { data });
+  //   })
+  //   .catch((err) => {
+  //     console.log('Error', err.message);
+  //     res.send(err);
+  //   });
+    const category_id = req.params.category_id;
+    const user_id = req.session.user_id;
+    let queryString = `
+    SELECT tasks.*, categories.type AS category_type
+    FROM tasks
+    JOIN categories ON tasks.category_id = categories.id
+    WHERE tasks.category_id = $1 AND tasks.user_id = $2
+    `;
+    let values = [category_id, user_id];
+    db.query(queryString, values)
+      .then(result => {
+        const tasks = result.rows;
+        const templateVars = { tasks };
+        res.render('category', templateVars);
+      })
+      .catch((err) => {
+        console.log('Error', err.message);
+        res.send(err);
+      });
+
  });
 
 //  /api/tasks
