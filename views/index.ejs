@@ -34,6 +34,8 @@
   </button> -->
 
   <%- include('partials/_header') %>
+  <% include('../public/scripts/delete.js') %>
+  <% include('../public/scripts/complete.js') %>
   <div class="main-container">
     <div>
       <section class="new-task-form">
@@ -151,34 +153,50 @@
     </div>
     <div class='taskLists'>
       <div class='taskLists-groupA'>
-        <section class='foodList' id='1'>
-          <h4>Food</h4>
-          <ul class='sub-container-food'>
-            <% for (let task of tasksFood) { %>
-              <li class='toDoListItem' id=`<%= task.id %>`>
+        <section class='moviesList' id='1'>
+          <h4>Movies & TV</h4>
+          <ul class='sub-container-movie'>
+            <% for (let task of tasksMovies) { %>
+              <li class='toDoListItem' id='<%= task.id %>'>
                 <div class='toDoRightSide'>
-                  <button class='listButton'>
+                  <button class='listButton listButtonComplete' id='<%= task.id %>-CompleteButton'>
                     <i class='fas fa-check-circle'></i>
+                  </button>
+                  <button class='listButton listButtonDelete' id='<%= task.id %>-DeleteButton'>
                     <i class='fas fa-minus-circle'></i>
                   </button>
                 </div>
-                <%= task.title %>
+                <%if (task.completion_status === true) { %>
+                  <div class="task" style="text-decoration:line-through" id='<%= task.id %>-Text'>
+                  <% } else { %>
+                    <div class="task" id='<%= task.id %>-Text'>
+                  <% } %>
+                  <%= task.title %>
+                </div>
               </li>
             <% } %>
           </ul>
         </section>
-        <section class='moviesList' id='2'>
-          <h4>Movies</h4>
-          <ul class="sub-container-movies">
-            <% for (let task of tasksMovies) { %>
-              <li class='toDoListItem' id=`<%= task.id %>`>
+        <section class='foodList' id='2'>
+          <h4>Food</h4>
+          <ul class="sub-container-food">
+            <% for (let task of tasksFood) { %>
+              <li class='toDoListItem' id='<%= task.id %>'>
                 <div class='toDoRightSide'>
-                  <button class='listButton'>
+                  <button class='listButton listButtonComplete' id='<%= task.id %>-CompleteButton'>
                     <i class='fas fa-check-circle'></i>
+                  </button>
+                  <button class='listButton listButtonDelete' id='<%= task.id %>-DeleteButton'>
                     <i class='fas fa-minus-circle'></i>
                   </button>
                 </div>
-                <%= task.title %>
+                <%if (task.completion_status === true) { %>
+                  <div class="task" style="text-decoration:line-through" id='<%= task.id %>-Text'>
+                  <% } else { %>
+                    <div class="task" id='<%= task.id %>-Text'>
+                  <% } %>
+                  <%= task.title %>
+                </div>
               </li>
             <% } %>
           </ul>
@@ -187,14 +205,22 @@
           <h4>Books</h4>
           <ul class="sub-container-books">
             <% for (let task of tasksBooks) { %>
-              <li class='toDoListItem' id=`<%= task.id %>`>
+              <li class='toDoListItem' id='<%= task.id %>'>
                 <div class='toDoRightSide'>
-                  <button class='listButton'>
+                  <button class='listButton listButtonComplete' id='<%= task.id %>-CompleteButton'>
                     <i class='fas fa-check-circle'></i>
+                  </button>
+                  <button class='listButton listButtonDelete' id='<%= task.id %>-DeleteButton'>
                     <i class='fas fa-minus-circle'></i>
                   </button>
                 </div>
-                <%= task.title %>>
+                <%if (task.completion_status === true) { %>
+                  <div class="task" style="text-decoration:line-through" id='<%= task.id %>-Text'>
+                  <% } else { %>
+                    <div class="task" id='<%= task.id %>-Text'>
+                  <% } %>
+                  <%= task.title %>
+                </div>
               </li>
             <% } %>
           </ul>
@@ -203,14 +229,22 @@
           <h4>Products</h4>
           <ul class="sub-container-products" id='4'>
             <% for (let task of tasksProducts) { %>
-              <li class='toDoListItem' id=`<%= task.id %>`>
+              <li class='toDoListItem' id='<%= task.id %>'>
                 <div class='toDoRightSide'>
-                  <button class='listButton'>
+                  <button class='listButton listButtonComplete' id='<%= task.id %>-CompleteButton'>
                     <i class='fas fa-check-circle'></i>
+                  </button>
+                  <button class='listButton listButtonDelete' id='<%= task.id %>-DeleteButton'>
                     <i class='fas fa-minus-circle'></i>
                   </button>
                 </div>
-                <%= task.title %>
+                <%if (task.completion_status === true) { %>
+                  <div class="task" style="text-decoration:line-through" id='<%= task.id %>-Text'>
+                  <% } else { %>
+                    <div class="task" id='<%= task.id %>-Text'>
+                  <% } %>
+                  <%= task.title %>
+                </div>
               </li>
             <% } %>
           </ul>
@@ -221,14 +255,22 @@
           <h4>Uncategorized</h4>
           <ul class="sub-container-uncategorized">
             <% for (let task of tasksUncategorized) { %>
-              <li class='toDoListItem' id=`<%= task.id %>`>
+              <li class='toDoListItem' id='<%= task.id %>'>
                 <div class='toDoRightSide'>
-                  <button class='listButton'>
+                  <button class='listButton listButtonComplete' id='<%= task.id %>-CompleteButton'>
                     <i class='fas fa-check-circle'></i>
+                  </button>
+                  <button class='listButton listButtonDelete' id='<%= task.id %>-DeleteButton'>
                     <i class='fas fa-minus-circle'></i>
                   </button>
                 </div>
-                <%= task.title %>
+                <%if (task.completion_status === true) { %>
+                  <div class="task" style="text-decoration:line-through" id='<%= task.id %>-Text'>
+                  <% } else { %>
+                    <div class="task" id='<%= task.id %>-Text'>
+                  <% } %>
+                  <%= task.title %>
+                </div>
               </li>
             <% } %>
           </ul>
@@ -239,9 +281,10 @@
 
   <!-- End Task Area -->
   <i class="fa-solid fa-list-radio"></i>
-
-
-
+  <script>
+    deleteButton()
+    completeButton()
+  </script>
 </body>
 
 </html>

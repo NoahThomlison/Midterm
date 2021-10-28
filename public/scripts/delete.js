@@ -18,4 +18,4 @@ deleteButton = () => {
   }))
 }
 
-module.exports = deleteButton
+// module.exports = deleteButton;
