@@ -1,3 +1,64 @@
+.main-container {
+  margin-left: 100px;
+  width: 90%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .new-task-form {
+    width: auto;
+
+    div {
+      text-align: center;
+    }
+
+    #newTaskForm {
+      display: none;
+      margin: 0 30%;
+
+      label {
+        text-align: left;
+      }
+
+      .new-task-reminder-date {
+        display: none;
+
+        h6 {
+          text-align: left;
+        }
+      }
+
+    }
+  }
+
+  .taskLists {
+    height: 90%;
+    width: auto;
+
+    .taskLists-groupA {
+      display: flex;
+      flex-direction: row;
+      height: 80%;
+    };
+
+    .taskLists-group {
+      height: 20%;
+
+      .uncategorizedList {
+        width: auto;
+        height: 100%;
+      }
+    }
+  }
+
+}
+
+
+li a {
+  text-decoration: none;
+  color: black
+};
+
 i {
   margin-right: 5px;
   vertical-align: middle;

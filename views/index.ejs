@@ -22,7 +22,7 @@
   <script type="text/javascript" src="/scripts/newTask.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
   <script type="text/javascript" src="/scripts/delete.js"></script>
-  <!-- <script type="text/javascript" src="/scripts/complete.js"></script> -->
+  <script type="text/javascript" src="/scripts/complete.js"></script>
 
 
 </head>
@@ -34,15 +34,15 @@
   </button> -->
 
   <%- include('partials/_header') %>
-  <div style="margin-left: 100px; width: 90%; height: 100vh; display: flex; flex-direction: column;">
+  <div class="main-container">
     <div>
-      <section style="width: auto;" class="new-task-form">
-        <div style="text-align:center">
+      <section class="new-task-form">
+        <div>
           <i class="far fa-hand-point-right"></i>
           <button class="btn btn-primary" id="new-task-button" type="submit">New Task</button>
         </div>
         <div>
-          <form style="display: none; margin: 0 30%;" id='newTaskForm' method="POST" action="/api/tasks/new">
+          <form id='newTaskForm' method="POST" action="/api/tasks/new">
             <div class="new-task-title">
               <label for="title">Title</label>
               <input id="title" type="text" name="title" placeholder="Enter title">
@@ -58,7 +58,7 @@
                 <option value="02">Yes</option>
               </select>
             </div>
-            <div style="display: none;" class="new-task-reminder-date">
+            <div class="new-task-reminder-date">
               <h6>Reminder-date</h6>
               <div class="new-task-reminder-date-day">
                 <label for="reminder-date-day">Day</label>
@@ -149,8 +149,8 @@
         <!-- End Task Box -->
       </section>
     </div>
-    <div style="height: 90%; width: auto;" class='taskLists'>
-      <div style="display: flex; flex-direction: row; height: 80%;" class='taskLists-groupA'>
+    <div class='taskLists'>
+      <div class='taskLists-groupA'>
         <section class='foodList' id='1'>
           <h4>Food</h4>
           <ul class='sub-container-food'>
@@ -228,8 +228,8 @@
           </ul>
         </section>
       </div>
-      <div style="height: 20%;">
-        <section style="width: auto; height: 100%;" class='uncategorizedList' id='5'>
+      <div class="taskLists-group">
+        <section class='uncategorizedList' id='5'>
           <h4>Uncategorized</h4>
           <ul class="sub-container-uncategorized">
             <% for (let task of tasksUncategorized) { %>
