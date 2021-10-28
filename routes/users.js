@@ -55,10 +55,9 @@ module.exports = (db) => {
   });
 
   // POST api/users/logout - clear the cookie - redirect to main page /tasks
-  router.post('/logout', (req, res) => {
+  router.get('/logout', (req, res) => {
     req.session = null;
-
-    res.redirect('/tasks');
+    res.redirect('/api/users/login');
   });
 
   // GET api/users/register - render the register page
@@ -139,5 +138,6 @@ module.exports = (db) => {
 
     res.redirect('/tasks');
   });
+
   return router;
 };
