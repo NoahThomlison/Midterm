@@ -17,53 +17,154 @@
   <%- include('partials/_header') %>
   <section class="task">
     <h3><%= tasks[0].category_type %></h3>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Title</th>
-          <th scope="col">Description</th>
-          <th scope="col">Set Reminder</th>
-          <th scope="col">Reminder-date</th>
-          <th scope="col">Completed</th>
-          <th scope="col">Edit</th>
-          <th scope="col">Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% for (let task of tasks) { %>
+    <div class="new-task-form">
+      <form id='newTaskForm' method="POST" action="/api/tasks/new">
+        <div class="new-task-title">
+          <label for="title">Title</label>
+          <input id="title" type="text" name="title" placeholder="Enter title">
+        </div>
+        <div class="new-task-description">
+          <label for="description">Description</label>
+          <input id="description" type="text" name="password" placeholder="Description">
+        </div>
+        <div class="new-task-set-reminder">
+          <label for="set-reminder">Set reminder</label>
+          <select id="set-reminder" name="set-reminder">
+            <option value="01">No</option>
+            <option value="02">Yes</option>
+          </select>
+        </div>
+        <div class="new-task-reminder-date">
+          <h6>Reminder-date</h6>
+          <div class="new-task-reminder-date-day">
+            <label for="reminder-date-day">Day</label>
+            <select id="reminder-date-day" name="reminder-date-day">
+              <option value="">Day</option>
+              <option value="01">1</option>
+              <option value="02">2</option>
+              <option value="03">3</option>
+              <option value="04">4</option>
+              <option value="05">5</option>
+              <option value="06">6</option>
+              <option value="07">7</option>
+              <option value="08">8</option>
+              <option value="09">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+              <option value="24">24</option>
+              <option value="25">25</option>
+              <option value="26">26</option>
+              <option value="27">27</option>
+              <option value="28">28</option>
+              <option value="29">29</option>
+              <option value="30">30</option>
+              <option value="31">31</option>
+            </select>
+          </div>
+          <div class="new-task-reminder-date-month">
+            <label for="reminder-date-month">Month</label>
+            <select id="reminder-date-month" name="reminder-date-month">
+              <option value="">Month</option>
+              <option value="01">January</option>
+              <option value="02">February</option>
+              <option value="03">March</option>
+              <option value="04">April</option>
+              <option value="05">May</option>
+              <option value="06">June</option>
+              <option value="07">July</option>
+              <option value="08">August</option>
+              <option value="09">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+          </div>
+
+          <div class="new-task-reminder-date-year">
+            <label for="reminder-date-month">Year</label>
+            <select id="reminder-date-year" name="reminder-date-year">
+              <option value="">Year</option>
+              <option value="2021">2021</option>
+              <option value="2022">2022</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+              <option value="2027">2027</option>
+              <option value="2028">2028</option>
+              <option value="2029">2029</option>
+              <option value="2030">2030</option>
+            </select>
+          </div>
+        </div>
+        <div class="new-task-form-submit-button">
+          <button class="btn btn-warning" type="submit">Create</button>
+        </div>
+      </form>
+    </div>
+    <div>
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= task.title %></td>
-            <td><%= task.description %></td>
-            <% if (task.set_reminder === false) { %>
-              <td>No</td>
-            <% } else { %>
-              <td>Yes</td>
-            <% } %>
-            <td><%= task.reminder_date %></td>
-            <% if (task.completion_status === false) { %>
-              <td>No</td>
-            <% } else { %>
-              <td>Yes</td>
-            <% } %>
-            <td>
-              <a href="#"
-                <button type="button" class="btn btn-outline-primary">Edit</button>
-              </a>
-            </td>
-            <td>
-              <form method="POST" action="">
-                <div class="form-group mb-2">
-                  <button type="delete" class="btn btn-outline-danger">Delete</button>
-                </div>
-              </form>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Set Reminder</th>
+            <th scope="col">Reminder-date</th>
+            <th scope="col">Completed</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
           </tr>
-        <% } %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% for (let task of tasks) { %>
+            <tr>
+              <td><%= task.title %></td>
+              <td><%= task.description %></td>
+              <% if (task.set_reminder === false) { %>
+                <td>No</td>
+              <% } else { %>
+                <td>Yes</td>
+              <% } %>
+              <td><%= task.reminder_date %></td>
+              <% if (task.completion_status === false) { %>
+                <td>No</td>
+              <% } else { %>
+                <td>Yes</td>
+              <% } %>
+              <td>
+                <a href="#"
+                  <button type="button" class="edit-button btn btn-outline-primary">Edit</button>
+                </a>
+              </td>
+              <td>
+                <form method="POST" action="">
+                  <div class="form-group mb-2">
+                    <button type="delete" class="btn btn-outline-danger">Delete</button>
+                  </div>
+                </form>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
   </section>
   <!-- Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <script type="text/javascript" src="/scripts/category.js"></script>
 </body>
 </html>

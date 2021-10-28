@@ -15,4 +15,61 @@ section {
     margin: 10px 0;
   }
 
+  .new-task-form {
+    width: 50%;
+    margin: 0 25%;
+    display: none;
+
+    form {
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid gray;
+      font-size: 16px;
+
+      div {
+        display: flex;
+        flex-direction: column;
+        margin: 5px 0;
+      };
+
+      label {
+        margin: 0;
+        float: left;
+        width: 130px;
+        height: 35px;
+        font-weight: bold;
+        line-height: 35px;
+      };
+
+      .continue-button {
+        margin-top: 15px;
+      };
+
+      input {
+        padding: 2.5px 12px;
+        border: 1px solid gray;
+        border-radius: 4px;
+        height: 35px;
+      };
+
+      p {
+        margin: 0;
+      };
+
+      .new-task-reminder-date {
+        margin-top: 10px;
+        display: none;
+
+        h6 {
+          margin: 0;
+          font-weight: bold;
+        };
+
+        div {
+          margin: 0;
+        }
+      }
+    }
+  }
 }
