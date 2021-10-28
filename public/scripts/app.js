@@ -1,6 +1,5 @@
 // Client facing scripts here
-// import fetch from "node-fetch";
-// deleteButton = require('./delete')
+
 $(document).ready(function(){
 
   $('#newTaskForm').submit(function(event){
@@ -10,35 +9,33 @@ $(document).ready(function(){
     const task = $('#title').val()
     const description = $('#description').val()
 
-    let user = 1
-
-    //post to end point which sorts the keywords
+    // post to end point which sorts the keywords
     $.post('/api/keywords', {keyword: task})
     .then((category) => {
 
       //post new task information to db, returing the newtask information from db
-      $.post('/api/tasks/new', {task, description, category, user}).then((newTaskData) => {
+      $.post('/api/tasks/new', {task, description, category}).then((newTaskData) => {
 
         //append new task to the front end
-        $(`#${category}`).append(
+        $(`#${category}`).find('ul').append(
           `<li class='toDoListItem' id='${newTaskData.id}'>
             <div class='toDoRightSide'>
-              <button class='listButtonComplete' id='${newTaskData.id}-CompleteButton'>
+              <button class='listButton listButtonComplete' id='${newTaskData.id}-CompleteButton'>
                 <i class="fas fa-check-circle"></i>
               </button>
-              <button class='listButtonDelete' id='${newTaskData.id}-DeleteButton'>
+              <button class='listButton listButtonDelete' id='${newTaskData.id}-DeleteButton'>
                 <i class="fas fa-minus-circle"'></i>
               </button>
-              <div class="task">${task}
+              <div class="task" id='${newTaskData.id}-Text'>${task}
               </div>
             </div>
-            <button class='listButton'>
-              <i class="fas fa-filter"></i>
-            </button>
           </li>`)
 
         //run delete button function which adds the eventListeners
         deleteButton()
+
+        //run complete button function which adds the eventListeners
+        completeButton()
       })
     })
   })
