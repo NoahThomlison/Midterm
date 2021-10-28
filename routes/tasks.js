@@ -157,6 +157,7 @@ router.get("/new", (req, res) => {
   // });
 
     // mark task as complete
+
   router.post('/:taskId', (req, res) => {
     const taskId = req.params.taskId;
     const queryParams = `UPDATE tasks SET completion_status = TRUE WHERE id = $1 RETURNING *`;
