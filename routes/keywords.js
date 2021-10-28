@@ -16,7 +16,11 @@ module.exports = (db) => {
     let count = 0
 
     const wikiPromise =
-      wikiSearch(keyword).then((wikiData) => {return (wikiData)})
+      wikiSearch(keyword)
+      .then((wikiData) => {
+        // console.log(wikiData)
+        return (wikiData)})
+      .catch(function(error){console.log(error);});
 
     const dbPromise = db.query(`SELECT * FROM keywords;`)
     .then(data => {
@@ -32,24 +36,49 @@ module.exports = (db) => {
       let wikiValues = values[0]
       let dbPromise = values[1]
       let categories = {}
+      let noHTMLWikiValues = wikiValues.replace(/<[^>]*>?,:/gm, '');
+      let wikiWords = noHTMLWikiValues.split(" ");
+      console.log(dbPromise)
+      console.log(noHTMLWikiValues)
 
-      let wikiStringSnippet = ''
+      //return counts of each catagory for weight average
+      const reducedDB = dbPromise.reduce((s, { category_id }) => (s[category_id] = (s[category_id] || 0) + 1, s), {});
+      const dbKeyValueCount = Object.keys(reducedDB).map((key) => ({ category_id: key, count: reducedDB[key] }));
 
-      for (const wiki of wikiValues) {
-        wikiStringSnippet = wikiStringSnippet + ' ' + wiki.snippet
-      }
-
+      //loop through the array of works on wiki and compare to the db words related to each catagory. if same index
       for (const db of dbPromise) {
-        if(wikiStringSnippet.includes(db.keyword)){
-          console.log(db.keyword)
-          categories[db.category_id] = (categories[db.category_id]+1) || 1 ;
+        for (const word of wikiWords) {
+          if(word===db.keyword)
+          {categories[db.category_id] = (categories[db.category_id]+1) || 1 ;}
         }
       }
+
+      console.log(`NON-NORMALIZED RESULTS:`)
+      console.log(categories)
+
+      console.log('DBKEYWORD COUNTS:')
+      console.log(dbKeyValueCount)
+
+      //normalizing results (ie divide matches against count for each catagory in db to return weighted average and not absolute counts)
+      let normalizedValue = []
+      for (const count of dbKeyValueCount) {
+        for (const key in categories) {
+          if(key === count.category_id){
+            categories[key] = categories[key]/count.count
+          }
+        }
+      }
+
+      console.log(`NORMALIZED RESULTS:`)
+      console.log(categories)
+
+      //return highest value in catagories object
       let correctCatagory = Object.keys(categories).reduce((a, b) => categories[a] > categories[b] ? a : b);
 
-      console.log(categories)
+      console.log(`CORRECT CATEGORY:`)
       console.log(correctCatagory)
       res.json(correctCatagory)
+      res.end()
       });
   });
   return router;
@@ -59,15 +88,15 @@ module.exports = (db) => {
 function wikiSearch (keyword) {
 
   let url = "https://en.wikipedia.org/w/api.php";
-  let params = {
+    let params = {
     action: "query",
+    generator: "allpages",
+    gaplimit: 1,
+    gapfrom: keyword,
     prop: "extracts",
-    list: "search",
-    srsearch: keyword,
-    srlimit: 100,
     format: "json",
-    exchars: 1200
-    };
+    formatversion: 2
+    }
 
   url = url + "?origin=*";
 
@@ -78,8 +107,10 @@ function wikiSearch (keyword) {
   let data = fetch(url)
     .then(response => response.json())
     .then(data => {
-      return(data.query.search)})
+      // console.log((data.query.pages[0].extract))
+      return(data.query.pages[0].extract)})
     .catch(function(error){console.log(error);});
 
   return data
 }
+
