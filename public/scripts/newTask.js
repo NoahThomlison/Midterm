@@ -119,6 +119,8 @@ $(document).ready(function() {
     } else {
       $('#newTaskForm').slideUp();
       $displayValue = 'none';
+      $reminderDate.hide();
+      $('#set-reminder').val('01');
     }
 
   });
