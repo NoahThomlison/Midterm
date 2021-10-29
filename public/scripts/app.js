@@ -30,12 +30,6 @@ $(document).ready(function(){
               </div>
             </div>
           </li>`)
-
-        //run delete button function which adds the eventListeners
-        deleteButton()
-
-        //run complete button function which adds the eventListeners
-        completeButton()
       })
     })
   })
