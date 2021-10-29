@@ -18,7 +18,6 @@ module.exports = (db) => {
     const wikiPromise =
       wikiSearch(keyword)
       .then((wikiData) => {
-        // console.log(wikiData)
         return (wikiData)})
       .catch(function(error){console.log(error);});
 
@@ -32,13 +31,16 @@ module.exports = (db) => {
       res.json({ error: err.message });
       });
 
-    return Promise.all([wikiPromise, dbPromise]).then((values) => {
+    return Promise.all([wikiPromise, dbPromise])
+    .then((values) => {
       let wikiValues = values[0]
       let dbPromise = values[1]
       let categories = {}
-      let noHTMLWikiValues = wikiValues.replace(/<[^>]*>?,:/gm, '');
+      let noHTMLWikiValues = wikiValues.replace(/<[^>]*>?/gm, '');
       let wikiWords = noHTMLWikiValues.split(" ");
+      let matchingKeyWords = []
       console.log(dbPromise)
+      console.log(wikiValues)
       console.log(noHTMLWikiValues)
 
       //return counts of each catagory for weight average
@@ -48,10 +50,13 @@ module.exports = (db) => {
       //loop through the array of works on wiki and compare to the db words related to each catagory. if same index
       for (const db of dbPromise) {
         for (const word of wikiWords) {
-          if(word===db.keyword)
-          {categories[db.category_id] = (categories[db.category_id]+1) || 1 ;}
+          if(word === db.keyword)
+          categories[db.category_id] = (categories[db.category_id]+1) || 1 ;
+          // matchingKeyWords.push(`${word} = ${db.keyword}`)
         }
       }
+
+      // console.log(`MATCHING KEYWORDS: ${matchingKeyWords}`)
 
       console.log(`NON-NORMALIZED RESULTS:`)
       console.log(categories)
@@ -79,7 +84,10 @@ module.exports = (db) => {
       console.log(correctCatagory)
       res.json(correctCatagory)
       res.end()
-      });
+      })
+    .catch(function(error){
+      console.log(error);
+      res.send(false)});
   });
   return router;
 };

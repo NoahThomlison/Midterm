@@ -12,6 +12,20 @@ $(document).ready(function(){
     // post to end point which sorts the keywords
     $.post('/api/keywords', {keyword: task})
     .then((category) => {
+    console.log(category)
+
+    if(!category){
+      console.log('bad task')
+      $("#newTaskForm").css("border", "red dotted 5px")
+      $('.new-task-title-error-message').html('Bad Task, check spelling')
+      $(".new-task-title-error").slideDown('slow')
+    }
+
+    if(category){
+      console.log('goodtask')
+      $("#newTaskForm").css("border", "none")
+      $('.new-task-title-error-message').html('')
+      $(".new-task-title-error").slideUp('slow')
 
       //post new task information to db, returing the newtask information from db
       $.post('/api/tasks/new', {task, description, category}).then((newTaskData) => {
@@ -37,6 +51,7 @@ $(document).ready(function(){
         //run complete button function which adds the eventListeners
         completeButton()
       })
+    }
     })
   })
 });
