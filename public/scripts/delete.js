@@ -2,9 +2,7 @@
 
 $(document).ready(function(){
 
-deleteButton = () => {
-
-  $('.listButtonDelete').on("click", function(event) {
+  $(document).on("click", '.listButtonDelete', function(event) {
     event.preventDefault();
     console.log('ding')
     const splitID = (this.id).split('-')
@@ -22,5 +20,5 @@ deleteButton = () => {
       console.log('Error: ', err.message);
     });
   });
-}
+
 });
