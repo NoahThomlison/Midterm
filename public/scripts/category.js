@@ -11,6 +11,10 @@ $(document).ready(function() {
       $reminderDate.hide();
     }
 
+    $('#reminder-date-day').val('');
+    $('#reminder-date-month').val('');
+    $('#reminder-date-year').val('');
+
   });
 
   const $newTaskForm = $('.new-task-form');
@@ -24,9 +28,10 @@ $(document).ready(function() {
     } else {
       $('.new-task-form').hide();
       $displayValue = 'none';
-      $reminderDate.hide();
-      $('#set-reminder').val('01');
     }
+
+    $reminderDate.hide();
+    $('#set-reminder').val('01');
 
   });
 
