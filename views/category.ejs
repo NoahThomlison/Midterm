@@ -16,7 +16,7 @@
 <body>
   <%- include('partials/_header') %>
   <section class="task">
-    <h3><%= tasks[0].category_type %></h3>
+    <h3><%= categoryType %></h3>
     <div class="new-task-form">
       <form id='newTaskForm' method="POST" action="/api/tasks/new">
         <div class="new-task-title">

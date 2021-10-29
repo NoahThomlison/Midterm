@@ -103,17 +103,22 @@ module.exports = (db) => {
   //   });
     const category_id = req.params.category_id;
     const user_id = req.session.user_id;
+    let categoryType;
+    if (category_id === '1') categoryType = 'Movies and TV';
+    if (category_id === '2') categoryType = 'Restaurants and Cafes';
+    if (category_id === '3') categoryType = 'Books and Magazines';
+    if (category_id === '4') categoryType = 'Items and Produce';
+    if (category_id === '5') categoryType = 'Uncategorized';
     let queryString = `
-    SELECT tasks.*, categories.type AS category_type
+    SELECT tasks.*
     FROM tasks
-    JOIN categories ON tasks.category_id = categories.id
     WHERE tasks.category_id = $1 AND tasks.user_id = $2
     `;
     let values = [category_id, user_id];
     db.query(queryString, values)
       .then(result => {
         const tasks = result.rows;
-        const templateVars = { tasks };
+        const templateVars = { tasks, categoryType };
         res.render('category', templateVars);
       })
       .catch((err) => {
