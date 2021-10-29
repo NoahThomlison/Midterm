@@ -51,7 +51,7 @@ module.exports = (db) => {
       for (const db of dbPromise) {
         for (const word of wikiWords) {
           if(word === db.keyword)
-          categories[db.category_id] = (categories[db.category_id]+1) || 1 ;
+          {categories[db.category_id] = (categories[db.category_id]+1) || 1 ;}
           // matchingKeyWords.push(`${word} = ${db.keyword}`)
         }
       }

@@ -1,8 +1,6 @@
 // Event Listener for the delete button
 
 $(document).ready(function(){
-
-
   $('.listButtonDelete').on("click", function(event) {
       event.preventDefault();
       console.log('ding')
