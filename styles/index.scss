@@ -8,6 +8,15 @@
   .new-task-form {
     width: auto;
 
+    i {
+      margin-right: 5px;
+      vertical-align: middle;
+      font-size: 25px;
+      color: red;
+      animation: move 0.5s infinite;
+      animation-direction: alternate;
+    }
+
     div {
       text-align: center;
     }
@@ -35,6 +44,10 @@
     height: 90%;
     width: auto;
 
+    h4 {
+      text-align: center;
+    }
+
     .taskLists-groupA {
       display: flex;
       flex-direction: row;
@@ -49,24 +62,31 @@
         height: 100%;
       }
     }
+
+    .toDoListItem {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+
+      .toDoRightSide {
+
+        .listButtonComplete {
+          color: green;
+          margin-right: 1px;
+        }
+
+        .listButtonDelete {
+          color: red;
+          margin-right: 10px;
+        }
+      }
+
+    }
   }
 
 }
 
 
-li a {
-  text-decoration: none;
-  color: black
-};
-
-i {
-  margin-right: 5px;
-  vertical-align: middle;
-  font-size: 25px;
-  color: red;
-  animation: move 0.5s infinite;
-  animation-direction: alternate;
-}
 @keyframes move {
   0%
   {
