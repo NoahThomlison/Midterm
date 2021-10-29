@@ -30,13 +30,45 @@ $(document).ready(function(){
               </div>
             </div>
           </li>`)
-
-        //run delete button function which adds the eventListeners
-        deleteButton()
-
-        //run complete button function which adds the eventListeners
-        completeButton()
       })
     })
   })
+
+  $('.listButtonDelete').on("click", function(deleteButton) {
+    deleteButton = () => {
+      event.preventDefault();
+      console.log('ding')
+      const splitID = (this.id).split('-')
+      const id = splitID[0]
+      const parentListItem = this.closest('li')
+      console.log(parentListItem)
+      console.log(id)
+
+      $.post(`/api/tasks/${id}/delete`, {tasksId: id})
+       .then((category) => {
+          console.log(parentListItem)
+          parentListItem.remove()
+      })
+      .catch((err) => {
+        console.log('Error: ', err.message);
+      });
+    }
+  });
+
+
+  $('.listButtonComplete').on("click", function(completeButton) {
+    completeButton = () => {
+      event.preventDefault();
+      const splitID = (this.id).split('-')
+      const id = splitID[0]
+
+      $.post(`/api/tasks/${id}`, {tasksId: id})
+      .then((category) => {
+        $(`#${id}-Text`).css("text-decoration", "line-through")
+      })
+      .catch((err) => {
+        console.log('Error: ', err.message);
+      });
+    }
+  });
 });
