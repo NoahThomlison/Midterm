@@ -1,8 +1,7 @@
 // Event Listener for the complete button
 $(document).ready(function(){
 
- completeButton = () => {
-    $('.listButtonComplete').on("click", function(event) {
+    $(document).on("click", '.listButtonComplete', function(event) {
         event.preventDefault();
         const splitID = (this.id).split('-')
         const id = splitID[0]
@@ -15,5 +14,5 @@ $(document).ready(function(){
           console.log('Error: ', err.message);
         });
     });
-  }
+
 });

@@ -2,26 +2,6 @@
 
 $(document).ready(function(){
 
-  // $('.listButtonDelete').on("click", function(event) {
-  //   event.preventDefault();
-  //   console.log('ding')
-  //   const splitID = (this.id).split('-')
-  //   const id = splitID[0]
-  //   const parentListItem = this.closest('li')
-  //   console.log(parentListItem)
-  //   console.log(id)
-
-  //   $.post(`/api/tasks/${id}/delete`, {tasksId: id})
-  //   .then((category) => {
-  //       console.log(parentListItem)
-  //       parentListItem.remove()
-  //   })
-  //   .catch((err) => {
-  //     console.log('Error: ', err.message);
-  //   });
-  // });
-
-
   $('#newTaskForm').submit(function(event){
     event.preventDefault();
 
@@ -66,10 +46,10 @@ $(document).ready(function(){
           </li>`)
 
     //run delete button function which adds the eventListeners
-        deleteButton()
+        // deleteButton()
 
     //run complete button function which adds the eventListeners
-        completeButton()
+        // completeButton()
       })
     }
     })
