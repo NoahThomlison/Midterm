@@ -29,7 +29,7 @@ $(document).ready(function(){
 
       //post new task information to db, returing the newtask information from db
       $.post('/api/tasks/new', {task, description, category}).then((newTaskData) => {
-
+        console.log(newTaskData)
         //append new task to the front end
         $(`#${category}`).find('ul').append(
           `<li class='toDoListItem' id='${newTaskData.id}'>
@@ -44,18 +44,8 @@ $(document).ready(function(){
               </div>
             </div>
           </li>`)
-
-    //run delete button function which adds the eventListeners
-        // deleteButton()
-
-    //run complete button function which adds the eventListeners
-        // completeButton()
       })
     }
-    })
   })
-
-
-
-
+  })
 });

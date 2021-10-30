@@ -40,7 +40,6 @@
     <div>
       <section class="new-task-form">
         <div>
-          <i class="far fa-hand-point-right"></i>
           <button class="btn btn-primary" id="new-task-button" type="submit">New Task</button>
         </div>
         <div>
@@ -156,7 +155,7 @@
     </div>
     <div class='taskLists'>
       <div class='taskLists-groupA'>
-        <section class='moviesList' id='1'>
+        <section class='categoryBox moviesList' id='1'>
           <h4>Movies & TV</h4>
           <ul class='sub-container-movie'>
             <% for (let task of tasksMovies) { %>
@@ -180,8 +179,8 @@
             <% } %>
           </ul>
         </section>
-        <section class='foodList' id='2'>
-          <h4>Food</h4>
+        <section class='categoryBox foodList' id='2'>
+          <h4>Restaurants & Cafes</h4>
           <ul class="sub-container-food">
             <% for (let task of tasksFood) { %>
               <li class='toDoListItem' id='<%= task.id %>'>
@@ -204,7 +203,7 @@
             <% } %>
           </ul>
         </section>
-        <section class='booksList' id='3'>
+        <section class='categoryBox booksList' id='3'>
           <h4>Books</h4>
           <ul class="sub-container-books">
             <% for (let task of tasksBooks) { %>

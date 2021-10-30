@@ -26,7 +26,7 @@
     "node-fetch": "^3.0.0",
     "pg": "^8.5.0",
     "pg-native": "^3.0.0",
-    "require": "^0.4.4",
+    "require": "^0.4.9",
     "sass": "^1.35.1"
   },
   "devDependencies": {
