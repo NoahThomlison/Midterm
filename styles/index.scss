@@ -7,6 +7,8 @@
 
   .new-task-form {
     width: auto;
+    padding: 0;
+    border: none;
 
     i {
       margin-right: 5px;
@@ -38,6 +40,10 @@
       }
 
     }
+  }
+
+  .btn-primary{
+    width: 100%;
   }
 
   .taskLists {
@@ -99,46 +105,36 @@
 }
 
 .foodList {
-  margin-right: 5px;
-  border: 1px solid #88d62f;
+  margin-right: 20px;
   background-color: white;
-  border: rgb(60, 60, 253) 2px solid;
-  border-radius: 10px;
-  // background-image: url("https://www.transparenttextures.com/patterns/food.png");
+  border-top: #AAF1F5 20px solid;
+  border-radius: 20px;
 }
 
 .booksList {
-  margin-right: 5px;
+  margin-right: 20px;
   background-color: white;
-  border: #0d6efd 5px solid;
-  border-radius: 10px;
-
-  // background-image: url("https://www.transparenttextures.com/patterns/notebook-dark.png");
+  border-top: #51B9CD 20px solid;
+  border-radius: 20px;
 }
 
 .moviesList {
-  margin-right: 5px;
+  margin-right: 20px;
   background-color: white;
-  border: #0d6efd 5px solid;
-  border-radius: 10px;
-
-  // background-image: url("https://www.transparenttextures.com/patterns/crissxcross.png");
+  border-top: #F8E5E6 20px solid;
+  border-radius: 20px;
 }
 
 .productsList {
   background-color:white;
-  border: #0d6efd 5px solid;
-  border-radius: 10px;
-
-  // background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+  border-top: #3A5673 20px solid;
+  border-radius: 20px;
 }
 
 .uncategorizedList {
-  border: 1px solid #a5b395;
   background-color: white;
   height: 200%;
-  border: #0d6efd 5px solid;
-  border-radius: 10px;
+  border-top: #3CACAE 20px solid;
+  border-radius: 20px;
 
-  // background-image: url("https://www.transparenttextures.com/patterns/dark-wall.png");
 }
