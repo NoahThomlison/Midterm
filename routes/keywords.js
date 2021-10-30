@@ -50,13 +50,19 @@ module.exports = (db) => {
       //loop through the array of works on wiki and compare to the db words related to each catagory. if same index
       for (const db of dbPromise) {
         for (const word of wikiWords) {
-          if(word === db.keyword)
-          {categories[db.category_id] = (categories[db.category_id]+1) || 1 ;}
-          // matchingKeyWords.push(`${word} = ${db.keyword}`)
+          if(word === db.keyword){
+            categories[db.category_id] = (categories[db.category_id]+1) || 1 ;
+            matchingKeyWords.push(`${word} `)
+          }
         }
       }
 
-      // console.log(`MATCHING KEYWORDS: ${matchingKeyWords}`)
+      console.log(`MATCHING KEYWORDS: ${matchingKeyWords}\n`)
+
+      console.log('Category 1: Movies and TV')
+      console.log('Category 2: Restaurants and Cafes')
+      console.log('Category 3: Books')
+      console.log('Category 4: Products\n')
 
       console.log(`NON-NORMALIZED RESULTS:`)
       console.log(categories)
