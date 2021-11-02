@@ -90,17 +90,6 @@ module.exports = (db) => {
 
   // view all tasks per category
  router.get('/category/:category_id', (req, res) => {
-  //  let queryString = `SELECT * FROM categories WHERE category_id = $1 AND user_id = $2`;
-  //  let values = [1, 1];
-  //  db.query(queryString, values)
-  //   .then((res) => {
-  //     const data = res.rows;
-  //     res.json( { data });
-  //   })
-  //   .catch((err) => {
-  //     console.log('Error', err.message);
-  //     res.send(err);
-  //   });
     const category_id = req.params.category_id;
     const user_id = req.session.user_id;
     let categoryType;
@@ -128,7 +117,6 @@ module.exports = (db) => {
 
  });
 
-//  /api/tasks
   // delete a specific task
   router.post('/:tasksId/delete', (req, res) => {
   const taskId = req.params.tasksId;
@@ -165,23 +153,6 @@ router.get("/new", (req, res) => {
         console.log('Error', err.message);
       });
   });
-
-    // update a task
-  // router.post('/tasks/modify/:tasksId', (req, res) => {
-  //   const userId = req.session.user_id;
-  //   const newTitle = req.body.
-  //   let updateTaskQuery = `UPDATE tasks SET title = $1 WHERE id = $2 RETURNING *`;
-  //   let values = [, userId];
-
-  //   db.query(updateTaskQuery, values)
-  //     .then((res) => {
-  //       const updatedTask = res.rows[0];
-  //       res.send(updatedTask);
-  //     })
-  //     .catch((err) => {
-  //       console.log('Error', err.message);
-  //     });
-  // });
 
     // mark task as complete
   router.post('/:tasksId', (req, res) => {
