@@ -1,0 +1,18 @@
+.focused{
+  transition: width 2s;
+  width: 75%
+}
+
+.unfocused{
+  transition: width 2s;
+  width: 25%
+}
+
+.hide{
+  display: none;
+}
+
+.show{
+  display: contents;
+  background-color: blue;
+}
