@@ -33,16 +33,16 @@ $(document).ready(function(){
         //append new task to the front end
         $(`#${category}`).find('ul').append(
           `<li class='toDoListItem' id='${newTaskData.id}'>
+            <div class='toDoRightSide'>
               <button class='listButton listButtonComplete' id='${newTaskData.id}-CompleteButton'>
                 <i class="fas fa-check-circle"></i>
               </button>
               <button class='listButton listButtonDelete' id='${newTaskData.id}-DeleteButton'>
-                <i class="fas fa-minus-circle"'></i>
+                <i class='fas fa-minus-circle'></i>
               </button>
-            <div class='toDoRightSide'>
-              <p class="task" id='${newTaskData.id}-Text'>${task}</p>
-              <p class="task" id='${newTaskData.id}-Text'>${description}</p>
             </div>
+              <h5 class="task" id='${newTaskData.id}-Text'>${task}</h5>
+              <p class="description" id='${newTaskData.id}-Text'>${description}</p>
           </li>`)
       })
     }
