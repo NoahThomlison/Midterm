@@ -24,10 +24,10 @@ $(document).ready(function() {
   $('#new-task-button').click(function() {
 
     if ($displayValue === 'none') {
-      $('#newTaskForm').slideDown();
+      $('#newTaskForm').slideDown('slow');
       $displayValue = 'block';
     } else {
-      $('#newTaskForm').slideUp();
+      $('#newTaskForm').slideUp('slow');
       $displayValue = 'none';
     }
 
