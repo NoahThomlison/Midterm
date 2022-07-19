@@ -17,7 +17,10 @@ Users can add, complete, delete and edit tasks. They can also view tasks per cat
 ## Category Page
 ![image](https://user-images.githubusercontent.com/80222250/139961340-be05f07e-8042-4c5e-a0f7-b9784f9fc657.png)
 
-## Dependencies
+##Setup
+Install dependencies with npm install.
+
+### Dependencies
     "bcryptjs": "^2.4.3",
     "chalk": "^2.4.2",
     "cookie-parser": "^1.4.5",
